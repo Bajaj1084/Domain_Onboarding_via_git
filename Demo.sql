@@ -1,0 +1,788 @@
+
+----------------------------------------------------------------------------------------------------------------
+-- CREATE ROLES
+----------------------------------------------------------------------------------------------------------------
+USE ROLE SECURITYADMIN;
+
+----------------------------------------------------------------------------------------------------------------
+----  CREATE FUNCTIONAL ROLES
+----------------------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------------------
+------  Domain Admin role for Domain
+----------------------------------------------------------------------------------------------------------------
+-------- None
+CREATE ROLE NN_EU_SNFK_DOMAIN_ADMIN_IO_FIT COMMENT = 'Domain Admin role for IO_CDP_FIT Data domain.';
+
+
+----------------------------------------------------------------------------------------------------------------
+------  ETL role for Domain
+----------------------------------------------------------------------------------------------------------------
+-------- DEV
+CREATE ROLE NN_EU_SNFK_ETL_IO_FIT_DEV COMMENT = 'Functional ETL role on DEV environment for IO_CDP_FIT Data domain.';
+-------- TEST
+CREATE ROLE NN_EU_SNFK_ETL_IO_FIT_TEST COMMENT = 'Functional ETL role on TEST environment for IO_CDP_FIT Data domain.';
+-------- PROD
+CREATE ROLE NN_EU_SNFK_ETL_IO_FIT_PROD COMMENT = 'Functional ETL role on PROD environment for IO_CDP_FIT Data domain.';
+
+----------------------------------------------------------------------------------------------------------------
+------  BI role for Domain
+----------------------------------------------------------------------------------------------------------------
+-------- DEV
+CREATE ROLE NN_EU_SNFK_BI_IO_FIT_DEV COMMENT = 'Functional BI role on DEV environment for IO_CDP_FIT Data domain.';
+-------- TEST
+CREATE ROLE NN_EU_SNFK_BI_IO_FIT_TEST COMMENT = 'Functional BI role on TEST environment for IO_CDP_FIT Data domain.';
+-------- PROD
+CREATE ROLE NN_EU_SNFK_BI_IO_FIT_PROD COMMENT = 'Functional BI role on PROD environment for IO_CDP_FIT Data domain.';
+
+----------------------------------------------------------------------------------------------------------------
+------  Developer role for Domain
+----------------------------------------------------------------------------------------------------------------
+-------- NPROD
+CREATE ROLE NN_EU_SNFK_DEVELOPER_IO_FIT_NPROD COMMENT = 'Functional Developer role on NPROD environment for IO_CDP_FIT Data domain.';
+
+----------------------------------------------------------------------------------------------------------------
+------  Operator role for Domain
+----------------------------------------------------------------------------------------------------------------
+-------- PROD
+CREATE ROLE NN_EU_SNFK_OPERATOR_IO_FIT_PROD COMMENT = 'Functional Operator role on PROD environment for IO_CDP_FIT Data domain.';
+
+----------------------------------------------------------------------------------------------------------------
+------  Reader role for Domain
+----------------------------------------------------------------------------------------------------------------
+-------- NPROD
+CREATE ROLE NN_EU_SNFK_READER_IO_FIT_NPROD COMMENT = 'Functional Reader role on NPROD environment for IO_CDP_FIT Data domain.';
+-------- PROD
+CREATE ROLE NN_EU_SNFK_READER_IO_FIT_PROD COMMENT = 'Functional Reader role on PROD environment for IO_CDP_FIT Data domain.';
+
+----------------------------------------------------------------------------------------------------------------
+----  CREATE ACCESS ROLES
+----------------------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------------------
+------  Object Level role for Domain
+----------------------------------------------------------------------------------------------------------------
+-------- DEV
+CREATE ROLE NN_EU_AR_OL_IO_FIT_DEV COMMENT = 'Access role with Object Level privileges on DEV environment for IO_CDP_FIT Data domain.';
+-------- TEST
+CREATE ROLE NN_EU_AR_OL_IO_FIT_TEST COMMENT = 'Access role with Object Level privileges on TEST environment for IO_CDP_FIT Data domain.';
+-------- PROD
+CREATE ROLE NN_EU_AR_OL_IO_FIT_PROD COMMENT = 'Access role with Object Level privileges on PROD environment for IO_CDP_FIT Data domain.';
+
+----------------------------------------------------------------------------------------------------------------
+------  Read Only role for Domain
+----------------------------------------------------------------------------------------------------------------
+-------- DEV
+CREATE ROLE NN_EU_AR_RO_IO_FIT_DEV COMMENT = 'Access role with Read Only privileges on DEV environment for IO_CDP_FIT Data domain.';
+-------- TEST
+CREATE ROLE NN_EU_AR_RO_IO_FIT_TEST COMMENT = 'Access role with Read Only privileges on TEST environment for IO_CDP_FIT Data domain.';
+-------- PROD
+CREATE ROLE NN_EU_AR_RO_IO_FIT_PROD COMMENT = 'Access role with Read Only privileges on PROD environment for IO_CDP_FIT Data domain.';
+
+----------------------------------------------------------------------------------------------------------------
+------  Read Write role for Domain
+----------------------------------------------------------------------------------------------------------------
+-------- DEV
+CREATE ROLE NN_EU_AR_RW_IO_FIT_DEV COMMENT = 'Access role with Read-Write privileges on DEV environment for IO_CDP_FIT Data domain.';
+-------- TEST
+CREATE ROLE NN_EU_AR_RW_IO_FIT_TEST COMMENT = 'Access role with Read-Write privileges on TEST environment for IO_CDP_FIT Data domain.';
+-------- PROD
+CREATE ROLE NN_EU_AR_RW_IO_FIT_PROD COMMENT = 'Access role with Read-Write privileges on PROD environment for IO_CDP_FIT Data domain.';
+
+
+----------------------------------------------------------------------------------------------------------------
+----  Grant OWNERSHIP required by SSO
+----------------------------------------------------------------------------------------------------------------
+USE ROLE SECURITYADMIN;
+
+GRANT OWNERSHIP ON ROLE NN_EU_SNFK_DOMAIN_ADMIN_IO_FIT TO ROLE AAD_PROVISIONER WITH GRANT OPTION COPY CURRENT GRANTS;
+GRANT OWNERSHIP ON ROLE NN_EU_SNFK_DEVELOPER_IO_FIT_NPROD TO ROLE AAD_PROVISIONER WITH GRANT OPTION COPY CURRENT GRANTS;
+GRANT OWNERSHIP ON ROLE NN_EU_SNFK_OPERATOR_IO_FIT_PROD TO ROLE AAD_PROVISIONER WITH GRANT OPTION COPY CURRENT GRANTS;
+GRANT OWNERSHIP ON ROLE NN_EU_SNFK_READER_IO_FIT_NPROD TO ROLE AAD_PROVISIONER WITH GRANT OPTION COPY CURRENT GRANTS;
+GRANT OWNERSHIP ON ROLE NN_EU_SNFK_READER_IO_FIT_PROD TO ROLE AAD_PROVISIONER WITH GRANT OPTION COPY CURRENT GRANTS;
+
+
+----------------------------------------------------------------------------------------------------------------
+----  Grant default OWNERSHIP
+----------------------------------------------------------------------------------------------------------------
+USE ROLE SECURITYADMIN;
+
+GRANT OWNERSHIP ON ROLE NN_EU_SNFK_ETL_IO_FIT_DEV TO ROLE SECURITYADMIN WITH GRANT OPTION COPY CURRENT GRANTS;
+GRANT OWNERSHIP ON ROLE NN_EU_SNFK_ETL_IO_FIT_TEST TO ROLE SECURITYADMIN WITH GRANT OPTION COPY CURRENT GRANTS;
+GRANT OWNERSHIP ON ROLE NN_EU_SNFK_ETL_IO_FIT_PROD TO ROLE SECURITYADMIN WITH GRANT OPTION COPY CURRENT GRANTS;
+GRANT OWNERSHIP ON ROLE NN_EU_SNFK_BI_IO_FIT_DEV TO ROLE SECURITYADMIN WITH GRANT OPTION COPY CURRENT GRANTS;
+GRANT OWNERSHIP ON ROLE NN_EU_SNFK_BI_IO_FIT_TEST TO ROLE SECURITYADMIN WITH GRANT OPTION COPY CURRENT GRANTS;
+GRANT OWNERSHIP ON ROLE NN_EU_SNFK_BI_IO_FIT_PROD TO ROLE SECURITYADMIN WITH GRANT OPTION COPY CURRENT GRANTS;
+GRANT OWNERSHIP ON ROLE NN_EU_AR_OL_IO_FIT_DEV TO ROLE SECURITYADMIN WITH GRANT OPTION COPY CURRENT GRANTS;
+GRANT OWNERSHIP ON ROLE NN_EU_AR_OL_IO_FIT_TEST TO ROLE SECURITYADMIN WITH GRANT OPTION COPY CURRENT GRANTS;
+GRANT OWNERSHIP ON ROLE NN_EU_AR_OL_IO_FIT_PROD TO ROLE SECURITYADMIN WITH GRANT OPTION COPY CURRENT GRANTS;
+GRANT OWNERSHIP ON ROLE NN_EU_AR_RO_IO_FIT_DEV TO ROLE SECURITYADMIN WITH GRANT OPTION COPY CURRENT GRANTS;
+GRANT OWNERSHIP ON ROLE NN_EU_AR_RO_IO_FIT_TEST TO ROLE SECURITYADMIN WITH GRANT OPTION COPY CURRENT GRANTS;
+GRANT OWNERSHIP ON ROLE NN_EU_AR_RO_IO_FIT_PROD TO ROLE SECURITYADMIN WITH GRANT OPTION COPY CURRENT GRANTS;
+GRANT OWNERSHIP ON ROLE NN_EU_AR_RW_IO_FIT_DEV TO ROLE SECURITYADMIN WITH GRANT OPTION COPY CURRENT GRANTS;
+GRANT OWNERSHIP ON ROLE NN_EU_AR_RW_IO_FIT_TEST TO ROLE SECURITYADMIN WITH GRANT OPTION COPY CURRENT GRANTS;
+GRANT OWNERSHIP ON ROLE NN_EU_AR_RW_IO_FIT_PROD TO ROLE SECURITYADMIN WITH GRANT OPTION COPY CURRENT GRANTS;
+
+
+----------------------------------------------------------------------------------------------------------------
+----  Grant default USAGE on roles
+----------------------------------------------------------------------------------------------------------------
+USE ROLE SECURITYADMIN;
+
+GRANT ROLE NN_EU_SNFK_DOMAIN_ADMIN_IO_FIT TO ROLE SYSADMIN ;
+GRANT ROLE NN_EU_SNFK_ETL_IO_FIT_DEV TO ROLE SYSADMIN ;
+GRANT ROLE NN_EU_SNFK_ETL_IO_FIT_TEST TO ROLE SYSADMIN ;
+GRANT ROLE NN_EU_SNFK_ETL_IO_FIT_PROD TO ROLE SYSADMIN ;
+GRANT ROLE NN_EU_SNFK_BI_IO_FIT_DEV TO ROLE SYSADMIN ;
+GRANT ROLE NN_EU_SNFK_BI_IO_FIT_TEST TO ROLE SYSADMIN ;
+GRANT ROLE NN_EU_SNFK_BI_IO_FIT_PROD TO ROLE SYSADMIN ;
+GRANT ROLE NN_EU_SNFK_DEVELOPER_IO_FIT_NPROD TO ROLE SYSADMIN ;
+GRANT ROLE NN_EU_SNFK_OPERATOR_IO_FIT_PROD TO ROLE SYSADMIN ;
+GRANT ROLE NN_EU_SNFK_READER_IO_FIT_NPROD TO ROLE SYSADMIN ;
+GRANT ROLE NN_EU_SNFK_READER_IO_FIT_PROD TO ROLE SYSADMIN ;
+GRANT ROLE NN_EU_AR_OL_IO_FIT_DEV TO ROLE SYSADMIN ;
+GRANT ROLE NN_EU_AR_OL_IO_FIT_TEST TO ROLE SYSADMIN ;
+GRANT ROLE NN_EU_AR_OL_IO_FIT_PROD TO ROLE SYSADMIN ;
+GRANT ROLE NN_EU_AR_RO_IO_FIT_DEV TO ROLE SYSADMIN ;
+GRANT ROLE NN_EU_AR_RO_IO_FIT_TEST TO ROLE SYSADMIN ;
+GRANT ROLE NN_EU_AR_RO_IO_FIT_PROD TO ROLE SYSADMIN ;
+GRANT ROLE NN_EU_AR_RW_IO_FIT_DEV TO ROLE SYSADMIN ;
+GRANT ROLE NN_EU_AR_RW_IO_FIT_TEST TO ROLE SYSADMIN ;
+GRANT ROLE NN_EU_AR_RW_IO_FIT_PROD TO ROLE SYSADMIN ;
+
+----------------------------------------------------------------------------------------------------------------
+----  GRANT Access Roles to Roles
+----------------------------------------------------------------------------------------------------------------
+USE ROLE SECURITYADMIN;
+
+----------------------------------------------------------------------------------------------------------------
+------  Grant Access Role Object Level
+----------------------------------------------------------------------------------------------------------------
+-------- DEV
+GRANT ROLE NN_EU_AR_OL_IO_FIT_DEV TO ROLE NN_EU_SNFK_ETL_IO_FIT_DEV;
+GRANT ROLE NN_EU_AR_OL_IO_FIT_DEV TO ROLE NN_EU_SNFK_DEVELOPER_IO_FIT_NPROD;
+-------- TEST
+GRANT ROLE NN_EU_AR_OL_IO_FIT_TEST TO ROLE NN_EU_SNFK_ETL_IO_FIT_TEST;
+GRANT ROLE NN_EU_AR_OL_IO_FIT_TEST TO ROLE NN_EU_SNFK_DEVELOPER_IO_FIT_NPROD;
+-------- PROD
+GRANT ROLE NN_EU_AR_OL_IO_FIT_PROD TO ROLE NN_EU_SNFK_ETL_IO_FIT_PROD;
+GRANT ROLE NN_EU_AR_OL_IO_FIT_PROD TO ROLE NN_EU_SNFK_OPERATOR_IO_FIT_PROD;
+
+----------------------------------------------------------------------------------------------------------------
+------  Grant Access Role Read Only
+----------------------------------------------------------------------------------------------------------------
+-------- DEV
+GRANT ROLE NN_EU_AR_RO_IO_FIT_DEV TO ROLE NN_EU_SNFK_BI_IO_FIT_DEV;
+GRANT ROLE NN_EU_AR_RO_IO_FIT_DEV TO ROLE NN_EU_SNFK_READER_IO_FIT_NPROD;
+-------- TEST
+GRANT ROLE NN_EU_AR_RO_IO_FIT_TEST TO ROLE NN_EU_SNFK_BI_IO_FIT_TEST;
+GRANT ROLE NN_EU_AR_RO_IO_FIT_TEST TO ROLE NN_EU_SNFK_READER_IO_FIT_NPROD;
+-------- PROD
+GRANT ROLE NN_EU_AR_RO_IO_FIT_PROD TO ROLE NN_EU_SNFK_BI_IO_FIT_PROD;
+GRANT ROLE NN_EU_AR_RO_IO_FIT_PROD TO ROLE NN_EU_SNFK_READER_IO_FIT_PROD;
+
+----------------------------------------------------------------------------------------------------------------
+------  Grant Access Role Read Write
+----------------------------------------------------------------------------------------------------------------
+-------- DEV
+GRANT ROLE NN_EU_AR_RW_IO_FIT_DEV TO ROLE NN_EU_SNFK_ETL_IO_FIT_DEV;
+GRANT ROLE NN_EU_AR_RW_IO_FIT_DEV TO ROLE NN_EU_SNFK_DEVELOPER_IO_FIT_NPROD;
+-------- TEST
+GRANT ROLE NN_EU_AR_RW_IO_FIT_TEST TO ROLE NN_EU_SNFK_ETL_IO_FIT_TEST;
+GRANT ROLE NN_EU_AR_RW_IO_FIT_TEST TO ROLE NN_EU_SNFK_DEVELOPER_IO_FIT_NPROD;
+-------- PROD
+GRANT ROLE NN_EU_AR_RW_IO_FIT_PROD TO ROLE NN_EU_SNFK_ETL_IO_FIT_PROD;
+GRANT ROLE NN_EU_AR_RW_IO_FIT_PROD TO ROLE NN_EU_SNFK_OPERATOR_IO_FIT_PROD;
+
+
+----------------------------------------------------------------------------------------------------------------
+-- CREATE DATABASES, SCHEMAS AND DEFINE OWNERSHIP
+----------------------------------------------------------------------------------------------------------------
+USE ROLE SYSADMIN;
+
+----------------------------------------------------------------------------------------------------------------
+---- Create objects for DEV environment
+----------------------------------------------------------------------------------------------------------------
+
+---- IO_FIT_DEV
+------ Create objects
+CREATE DATABASE IO_FIT_DEV COMMENT = 'Database of IO_CDP_FIT Data Data Domain on Development environment';
+CREATE SCHEMA IO_FIT_DEV.CORE WITH MANAGED ACCESS COMMENT = 'Core schema in IO_CDP_FIT Data database on DEV environment';
+CREATE SCHEMA IO_FIT_DEV.RPT WITH MANAGED ACCESS COMMENT = 'Reporting/Final schema in IO_CDP_FIT Data database on DEV environment';
+CREATE SCHEMA IO_FIT_DEV.STAGE WITH MANAGED ACCESS COMMENT = 'Staging schema in IO_CDP_FIT Data database on DEV environment';
+
+GRANT OWNERSHIP ON SCHEMA IO_FIT_DEV.CORE TO ROLE NN_EU_SNFK_DOMAIN_ADMIN_IO_FIT;
+GRANT OWNERSHIP ON SCHEMA IO_FIT_DEV.RPT TO ROLE NN_EU_SNFK_DOMAIN_ADMIN_IO_FIT;
+GRANT OWNERSHIP ON SCHEMA IO_FIT_DEV.STAGE TO ROLE NN_EU_SNFK_DOMAIN_ADMIN_IO_FIT;
+GRANT OWNERSHIP ON DATABASE IO_FIT_DEV TO ROLE NN_EU_SNFK_DOMAIN_ADMIN_IO_FIT;
+
+----------------------------------------------------------------------------------------------------------------
+---- Create objects for PROD environment
+----------------------------------------------------------------------------------------------------------------
+
+---- IO_FIT_PROD
+------ Create objects
+CREATE DATABASE IO_FIT_PROD COMMENT = 'Database of IO_CDP_FIT Data Data Domain on Production environment';
+CREATE SCHEMA IO_FIT_PROD.CORE WITH MANAGED ACCESS COMMENT = 'Core schema in IO_CDP_FIT Data database on PROD environment';
+CREATE SCHEMA IO_FIT_PROD.RPT WITH MANAGED ACCESS COMMENT = 'Reporting/Final schema in IO_CDP_FIT Data database on PROD environment';
+CREATE SCHEMA IO_FIT_PROD.STAGE WITH MANAGED ACCESS COMMENT = 'Staging schema in IO_CDP_FIT Data database on PROD environment';
+------ Grant Ownership
+GRANT OWNERSHIP ON SCHEMA IO_FIT_PROD.CORE TO ROLE NN_EU_SNFK_DOMAIN_ADMIN_IO_FIT;
+GRANT OWNERSHIP ON SCHEMA IO_FIT_PROD.RPT TO ROLE NN_EU_SNFK_DOMAIN_ADMIN_IO_FIT;
+GRANT OWNERSHIP ON SCHEMA IO_FIT_PROD.STAGE TO ROLE NN_EU_SNFK_DOMAIN_ADMIN_IO_FIT;
+GRANT OWNERSHIP ON DATABASE IO_FIT_PROD TO ROLE NN_EU_SNFK_DOMAIN_ADMIN_IO_FIT;
+
+----------------------------------------------------------------------------------------------------------------
+---- Create objects for TEST environment
+----------------------------------------------------------------------------------------------------------------
+
+---- IO_FIT_TEST
+------ Create objects
+CREATE DATABASE IO_FIT_TEST COMMENT = 'Database of IO_CDP_FIT Data Data Domain on Test / UAT environment';
+CREATE SCHEMA IO_FIT_TEST.CORE WITH MANAGED ACCESS COMMENT = 'Core schema in IO_CDP_FIT Data database on TEST environment';
+CREATE SCHEMA IO_FIT_TEST.RPT WITH MANAGED ACCESS COMMENT = 'Reporting/Final schema in IO_CDP_FIT Data database on TEST environment';
+CREATE SCHEMA IO_FIT_TEST.STAGE WITH MANAGED ACCESS COMMENT = 'Staging schema in IO_CDP_FIT Data database on TEST environment';
+------ Grant Ownership
+GRANT OWNERSHIP ON SCHEMA IO_FIT_TEST.CORE TO ROLE NN_EU_SNFK_DOMAIN_ADMIN_IO_FIT;
+GRANT OWNERSHIP ON SCHEMA IO_FIT_TEST.RPT TO ROLE NN_EU_SNFK_DOMAIN_ADMIN_IO_FIT;
+GRANT OWNERSHIP ON SCHEMA IO_FIT_TEST.STAGE TO ROLE NN_EU_SNFK_DOMAIN_ADMIN_IO_FIT;
+GRANT OWNERSHIP ON DATABASE IO_FIT_TEST TO ROLE NN_EU_SNFK_DOMAIN_ADMIN_IO_FIT;
+
+
+----------------------------------------------------------------------------------------------------------------
+-- CREATE WAREHOUSES
+----------------------------------------------------------------------------------------------------------------
+USE ROLE SYSADMIN;
+
+---- Create warehouses for users of role BI
+------ NPROD
+CREATE WAREHOUSE WH_EU_XS_BI_IO_FIT_NPROD WITH WAREHOUSE_SIZE = 'XSMALL' WAREHOUSE_TYPE = 'STANDARD' AUTO_SUSPEND = 60 AUTO_RESUME = True MIN_CLUSTER_COUNT = 1 MAX_CLUSTER_COUNT = 2 SCALING_POLICY = 'STANDARD';
+GRANT USAGE          ON WAREHOUSE WH_EU_XS_BI_IO_FIT_NPROD TO NN_EU_SNFK_BI_IO_FIT_DEV;
+GRANT USAGE          ON WAREHOUSE WH_EU_XS_BI_IO_FIT_NPROD TO NN_EU_SNFK_BI_IO_FIT_TEST;
+
+------ PROD
+CREATE WAREHOUSE WH_EU_XS_BI_IO_FIT_PROD WITH WAREHOUSE_SIZE = 'XSMALL' WAREHOUSE_TYPE = 'STANDARD' AUTO_SUSPEND = 60 AUTO_RESUME = True MIN_CLUSTER_COUNT = 1 MAX_CLUSTER_COUNT = 2 SCALING_POLICY = 'STANDARD';
+GRANT USAGE          ON WAREHOUSE WH_EU_XS_BI_IO_FIT_PROD TO NN_EU_SNFK_BI_IO_FIT_PROD;
+
+---- Create warehouses for users of role DEVELOPER
+------ NPROD
+CREATE WAREHOUSE WH_EU_XS_DEVELOPMENT_IO_FIT_NPROD WITH WAREHOUSE_SIZE = 'XSMALL' WAREHOUSE_TYPE = 'STANDARD' AUTO_SUSPEND = 60 AUTO_RESUME = True MIN_CLUSTER_COUNT = 1 MAX_CLUSTER_COUNT = 2 SCALING_POLICY = 'STANDARD';
+GRANT USAGE, MONITOR ON WAREHOUSE WH_EU_XS_DEVELOPMENT_IO_FIT_NPROD TO NN_EU_SNFK_DEVELOPER_IO_FIT_NPROD;
+
+---- Create warehouses for users of role OPERATOR
+------ PROD
+CREATE WAREHOUSE WH_EU_XS_OPERATIONS_IO_FIT_PROD WITH WAREHOUSE_SIZE = 'XSMALL' WAREHOUSE_TYPE = 'STANDARD' AUTO_SUSPEND = 60 AUTO_RESUME = True MIN_CLUSTER_COUNT = 1 MAX_CLUSTER_COUNT = 2 SCALING_POLICY = 'STANDARD';
+GRANT USAGE, MONITOR ON WAREHOUSE WH_EU_XS_OPERATIONS_IO_FIT_PROD TO NN_EU_SNFK_OPERATOR_IO_FIT_PROD;
+
+---- Create warehouses for users of role ETL
+------ NPROD
+CREATE WAREHOUSE WH_EU_XS_ETL_IO_FIT_NPROD WITH WAREHOUSE_SIZE = 'XSMALL' WAREHOUSE_TYPE = 'STANDARD' AUTO_SUSPEND = 60 AUTO_RESUME = True MIN_CLUSTER_COUNT = 1 MAX_CLUSTER_COUNT = 2 SCALING_POLICY = 'STANDARD';
+GRANT USAGE          ON WAREHOUSE WH_EU_XS_ETL_IO_FIT_NPROD TO NN_EU_SNFK_ETL_IO_FIT_DEV;
+GRANT USAGE          ON WAREHOUSE WH_EU_XS_ETL_IO_FIT_NPROD TO NN_EU_SNFK_ETL_IO_FIT_TEST;
+
+------ PROD
+CREATE WAREHOUSE WH_EU_XS_ETL_IO_FIT_PROD WITH WAREHOUSE_SIZE = 'XSMALL' WAREHOUSE_TYPE = 'STANDARD' AUTO_SUSPEND = 60 AUTO_RESUME = True MIN_CLUSTER_COUNT = 1 MAX_CLUSTER_COUNT = 2 SCALING_POLICY = 'STANDARD';
+GRANT USAGE          ON WAREHOUSE WH_EU_XS_ETL_IO_FIT_PROD TO NN_EU_SNFK_ETL_IO_FIT_PROD;
+
+
+---- Create warehouses for users of role READER
+------ NPROD
+CREATE WAREHOUSE WH_EU_XS_READERS_IO_FIT_NPROD WITH WAREHOUSE_SIZE = 'XSMALL' WAREHOUSE_TYPE = 'STANDARD' AUTO_SUSPEND = 60 AUTO_RESUME = True MIN_CLUSTER_COUNT = 1 MAX_CLUSTER_COUNT = 2 SCALING_POLICY = 'STANDARD';
+GRANT USAGE, MONITOR ON WAREHOUSE WH_EU_XS_READERS_IO_FIT_NPROD TO NN_EU_SNFK_READER_IO_FIT_NPROD;
+
+------ PROD
+CREATE WAREHOUSE WH_EU_XS_READERS_IO_FIT_PROD WITH WAREHOUSE_SIZE = 'XSMALL' WAREHOUSE_TYPE = 'STANDARD' AUTO_SUSPEND = 60 AUTO_RESUME = True MIN_CLUSTER_COUNT = 1 MAX_CLUSTER_COUNT = 2 SCALING_POLICY = 'STANDARD';
+GRANT USAGE, MONITOR ON WAREHOUSE WH_EU_XS_READERS_IO_FIT_PROD TO NN_EU_SNFK_READER_IO_FIT_PROD;
+
+
+
+----------------------------------------------------------------------------------------------------------------
+-- GRANT PRIVILEGES TO ACCESS ROLES
+----------------------------------------------------------------------------------------------------------------
+USE ROLE SECURITYADMIN;
+
+----------------------------------------------------------------------------------------------------------------
+---- Grant for OL Access roles
+----------------------------------------------------------------------------------------------------------------
+------ DEV
+-------- IO_FIT_DEV
+GRANT USAGE ON DATABASE IO_FIT_DEV TO ROLE NN_EU_AR_OL_IO_FIT_DEV;
+GRANT USAGE,
+      ADD SEARCH OPTIMIZATION,
+      CREATE AGGREGATION POLICY,
+      CREATE ALERT,
+      CREATE DATASET,
+      CREATE DYNAMIC TABLE,
+      CREATE EXTERNAL TABLE,
+      CREATE FILE FORMAT,
+      CREATE FUNCTION,
+      CREATE GIT REPOSITORY,
+      CREATE ICEBERG TABLE,
+      CREATE MATERIALIZED VIEW,
+      CREATE PIPE,
+      CREATE PROCEDURE,
+      CREATE PROJECTION POLICY,
+      CREATE SECRET,
+      CREATE SEQUENCE,
+      CREATE STAGE,
+      CREATE STREAM,
+      CREATE TABLE,
+      CREATE TAG,
+      CREATE TASK,
+      CREATE TEMPORARY TABLE,
+      CREATE VIEW,
+      MONITOR                   ON SCHEMA IO_FIT_DEV.CORE TO ROLE NN_EU_AR_OL_IO_FIT_DEV;
+GRANT USAGE,
+      ADD SEARCH OPTIMIZATION,
+      CREATE AGGREGATION POLICY,
+      CREATE ALERT,
+      CREATE DATASET,
+      CREATE DYNAMIC TABLE,
+      CREATE EXTERNAL TABLE,
+      CREATE FILE FORMAT,
+      CREATE FUNCTION,
+      CREATE GIT REPOSITORY,
+      CREATE ICEBERG TABLE,
+      CREATE MATERIALIZED VIEW,
+      CREATE PIPE,
+      CREATE PROCEDURE,
+      CREATE PROJECTION POLICY,
+      CREATE SECRET,
+      CREATE SEQUENCE,
+      CREATE STAGE,
+      CREATE STREAM,
+      CREATE TABLE,
+      CREATE TAG,
+      CREATE TASK,
+      CREATE TEMPORARY TABLE,
+      CREATE VIEW,
+      MONITOR                   ON SCHEMA IO_FIT_DEV.RPT TO ROLE NN_EU_AR_OL_IO_FIT_DEV;
+GRANT USAGE,
+      ADD SEARCH OPTIMIZATION,
+      CREATE AGGREGATION POLICY,
+      CREATE ALERT,
+      CREATE DATASET,
+      CREATE DYNAMIC TABLE,
+      CREATE EXTERNAL TABLE,
+      CREATE FILE FORMAT,
+      CREATE FUNCTION,
+      CREATE GIT REPOSITORY,
+      CREATE ICEBERG TABLE,
+      CREATE MATERIALIZED VIEW,
+      CREATE PIPE,
+      CREATE PROCEDURE,
+      CREATE PROJECTION POLICY,
+      CREATE SECRET,
+      CREATE SEQUENCE,
+      CREATE STAGE,
+      CREATE STREAM,
+      CREATE TABLE,
+      CREATE TAG,
+      CREATE TASK,
+      CREATE TEMPORARY TABLE,
+      CREATE VIEW,
+      MONITOR                   ON SCHEMA IO_FIT_DEV.STAGE TO ROLE NN_EU_AR_OL_IO_FIT_DEV;
+
+GRANT ALL ON FUTURE TABLES       IN SCHEMA IO_FIT_DEV.CORE TO ROLE NN_EU_AR_OL_IO_FIT_DEV;
+GRANT ALL ON FUTURE VIEWS        IN SCHEMA IO_FIT_DEV.CORE TO ROLE NN_EU_AR_OL_IO_FIT_DEV;
+GRANT ALL ON FUTURE TABLES       IN SCHEMA IO_FIT_DEV.RPT TO ROLE NN_EU_AR_OL_IO_FIT_DEV;
+GRANT ALL ON FUTURE VIEWS        IN SCHEMA IO_FIT_DEV.RPT TO ROLE NN_EU_AR_OL_IO_FIT_DEV;
+GRANT ALL ON FUTURE TABLES       IN SCHEMA IO_FIT_DEV.STAGE TO ROLE NN_EU_AR_OL_IO_FIT_DEV;
+GRANT ALL ON FUTURE VIEWS        IN SCHEMA IO_FIT_DEV.STAGE TO ROLE NN_EU_AR_OL_IO_FIT_DEV;
+
+
+------ PROD
+-------- IO_FIT_PROD
+GRANT USAGE ON DATABASE IO_FIT_PROD TO ROLE NN_EU_AR_OL_IO_FIT_PROD;
+GRANT USAGE,
+      ADD SEARCH OPTIMIZATION,
+      CREATE AGGREGATION POLICY,
+      CREATE ALERT,
+      CREATE DATASET,
+      CREATE DYNAMIC TABLE,
+      CREATE EXTERNAL TABLE,
+      CREATE FILE FORMAT,
+      CREATE FUNCTION,
+      CREATE GIT REPOSITORY,
+      CREATE ICEBERG TABLE,
+      CREATE MATERIALIZED VIEW,
+      CREATE PIPE,
+      CREATE PROCEDURE,
+      CREATE PROJECTION POLICY,
+      CREATE SECRET,
+      CREATE SEQUENCE,
+      CREATE STAGE,
+      CREATE STREAM,
+      CREATE TABLE,
+      CREATE TAG,
+      CREATE TASK,
+      CREATE TEMPORARY TABLE,
+      CREATE VIEW,
+      MONITOR                  ON SCHEMA IO_FIT_PROD.CORE TO ROLE NN_EU_AR_OL_IO_FIT_PROD;
+GRANT USAGE,
+      ADD SEARCH OPTIMIZATION,
+      CREATE AGGREGATION POLICY,
+      CREATE ALERT,
+      CREATE DATASET,
+      CREATE DYNAMIC TABLE,
+      CREATE EXTERNAL TABLE,
+      CREATE FILE FORMAT,
+      CREATE FUNCTION,
+      CREATE GIT REPOSITORY,
+      CREATE ICEBERG TABLE,
+      CREATE MATERIALIZED VIEW,
+      CREATE PIPE,
+      CREATE PROCEDURE,
+      CREATE PROJECTION POLICY,
+      CREATE SECRET,
+      CREATE SEQUENCE,
+      CREATE STAGE,
+      CREATE STREAM,
+      CREATE TABLE,
+      CREATE TAG,
+      CREATE TASK,
+      CREATE TEMPORARY TABLE,
+      CREATE VIEW,
+      MONITOR                   ON SCHEMA IO_FIT_PROD.RPT TO ROLE NN_EU_AR_OL_IO_FIT_PROD;
+GRANT USAGE,
+      ADD SEARCH OPTIMIZATION,
+      CREATE AGGREGATION POLICY,
+      CREATE ALERT,
+      CREATE DATASET,
+      CREATE DYNAMIC TABLE,
+      CREATE EXTERNAL TABLE,
+      CREATE FILE FORMAT,
+      CREATE FUNCTION,
+      CREATE GIT REPOSITORY,
+      CREATE ICEBERG TABLE,
+      CREATE MATERIALIZED VIEW,
+      CREATE PIPE,
+      CREATE PROCEDURE,
+      CREATE PROJECTION POLICY,
+      CREATE SECRET,
+      CREATE SEQUENCE,
+      CREATE STAGE,
+      CREATE STREAM,
+      CREATE TABLE,
+      CREATE TAG,
+      CREATE TASK,
+      CREATE TEMPORARY TABLE,
+      CREATE VIEW,
+      MONITOR                   ON SCHEMA IO_FIT_PROD.STAGE TO ROLE NN_EU_AR_OL_IO_FIT_PROD;
+
+GRANT ALL ON FUTURE TABLES      IN SCHEMA IO_FIT_PROD.CORE TO ROLE NN_EU_AR_OL_IO_FIT_PROD;
+GRANT ALL ON FUTURE VIEWS		IN SCHEMA IO_FIT_PROD.CORE TO ROLE NN_EU_AR_OL_IO_FIT_PROD;
+GRANT ALL ON FUTURE TABLES      IN SCHEMA IO_FIT_PROD.RPT TO ROLE NN_EU_AR_OL_IO_FIT_PROD;
+GRANT ALL ON FUTURE VIEWS       IN SCHEMA IO_FIT_PROD.RPT TO ROLE NN_EU_AR_OL_IO_FIT_PROD;
+GRANT ALL ON FUTURE TABLES      IN SCHEMA IO_FIT_PROD.STAGE TO ROLE NN_EU_AR_OL_IO_FIT_PROD;
+GRANT ALL ON FUTURE VIEWS       IN SCHEMA IO_FIT_PROD.STAGE TO ROLE NN_EU_AR_OL_IO_FIT_PROD;
+
+
+------ TEST
+-------- IO_FIT_TEST
+GRANT USAGE ON DATABASE IO_FIT_TEST TO ROLE NN_EU_AR_OL_IO_FIT_TEST;
+GRANT USAGE,
+      ADD SEARCH OPTIMIZATION,
+      CREATE AGGREGATION POLICY,
+      CREATE ALERT,
+      CREATE DATASET,
+      CREATE DYNAMIC TABLE,
+      CREATE EXTERNAL TABLE,
+      CREATE FILE FORMAT,
+      CREATE FUNCTION,
+      CREATE GIT REPOSITORY,
+      CREATE ICEBERG TABLE,
+      CREATE MATERIALIZED VIEW,
+      CREATE PIPE,
+      CREATE PROCEDURE,
+      CREATE PROJECTION POLICY,
+      CREATE SECRET,
+      CREATE SEQUENCE,
+      CREATE STAGE,
+      CREATE STREAM,
+      CREATE TABLE,
+      CREATE TAG,
+      CREATE TASK,
+      CREATE TEMPORARY TABLE,
+      CREATE VIEW,
+      MONITOR                  ON SCHEMA IO_FIT_TEST.CORE TO ROLE NN_EU_AR_OL_IO_FIT_TEST;
+GRANT USAGE,
+      ADD SEARCH OPTIMIZATION,
+      CREATE AGGREGATION POLICY,
+      CREATE ALERT,
+      CREATE DATASET,
+      CREATE DYNAMIC TABLE,
+      CREATE EXTERNAL TABLE,
+      CREATE FILE FORMAT,
+      CREATE FUNCTION,
+      CREATE GIT REPOSITORY,
+      CREATE ICEBERG TABLE,
+      CREATE MATERIALIZED VIEW,
+      CREATE PIPE,
+      CREATE PROCEDURE,
+      CREATE PROJECTION POLICY,
+      CREATE SECRET,
+      CREATE SEQUENCE,
+      CREATE STAGE,
+      CREATE STREAM,
+      CREATE TABLE,
+      CREATE TAG,
+      CREATE TASK,
+      CREATE TEMPORARY TABLE,
+      CREATE VIEW,
+      MONITOR                   ON SCHEMA IO_FIT_TEST.RPT TO ROLE NN_EU_AR_OL_IO_FIT_TEST;
+GRANT USAGE,
+      ADD SEARCH OPTIMIZATION,
+      CREATE AGGREGATION POLICY,
+      CREATE ALERT,
+      CREATE DATASET,
+      CREATE DYNAMIC TABLE,
+      CREATE EXTERNAL TABLE,
+      CREATE FILE FORMAT,
+      CREATE FUNCTION,
+      CREATE GIT REPOSITORY,
+      CREATE ICEBERG TABLE,
+      CREATE MATERIALIZED VIEW,
+      CREATE PIPE,
+      CREATE PROCEDURE,
+      CREATE PROJECTION POLICY,
+      CREATE SECRET,
+      CREATE SEQUENCE,
+      CREATE STAGE,
+      CREATE STREAM,
+      CREATE TABLE,
+      CREATE TAG,
+      CREATE TASK,
+      CREATE TEMPORARY TABLE,
+      CREATE VIEW,
+      MONITOR                   ON SCHEMA IO_FIT_TEST.STAGE TO ROLE NN_EU_AR_OL_IO_FIT_TEST;
+
+GRANT ALL ON FUTURE TABLES       IN SCHEMA IO_FIT_TEST.CORE TO ROLE NN_EU_AR_OL_IO_FIT_TEST;
+GRANT ALL ON FUTURE VIEWS        IN SCHEMA IO_FIT_TEST.CORE TO ROLE NN_EU_AR_OL_IO_FIT_TEST;
+GRANT ALL ON FUTURE TABLES       IN SCHEMA IO_FIT_TEST.RPT TO ROLE NN_EU_AR_OL_IO_FIT_TEST;
+GRANT ALL ON FUTURE VIEWS        IN SCHEMA IO_FIT_TEST.RPT TO ROLE NN_EU_AR_OL_IO_FIT_TEST;
+GRANT ALL ON FUTURE TABLES       IN SCHEMA IO_FIT_TEST.STAGE TO ROLE NN_EU_AR_OL_IO_FIT_TEST;
+GRANT ALL ON FUTURE VIEWS        IN SCHEMA IO_FIT_TEST.STAGE TO ROLE NN_EU_AR_OL_IO_FIT_TEST;
+
+
+----------------------------------------------------------------------------------------------------------------
+---- Grant for RO Access roles
+----------------------------------------------------------------------------------------------------------------
+------ DEV
+-------- IO_FIT_DEV
+GRANT USAGE ON DATABASE IO_FIT_DEV TO ROLE NN_EU_AR_RO_IO_FIT_DEV;
+GRANT USAGE                       ON SCHEMA IO_FIT_DEV.CORE TO ROLE NN_EU_AR_RO_IO_FIT_DEV;
+GRANT USAGE                       ON SCHEMA IO_FIT_DEV.RPT TO ROLE NN_EU_AR_RO_IO_FIT_DEV;
+GRANT USAGE                       ON SCHEMA IO_FIT_DEV.STAGE TO ROLE NN_EU_AR_RO_IO_FIT_DEV;
+
+GRANT SELECT                      ON FUTURE TABLES IN SCHEMA IO_FIT_DEV.CORE TO ROLE NN_EU_AR_RO_IO_FIT_DEV;
+GRANT SELECT                      ON FUTURE VIEWS  IN SCHEMA IO_FIT_DEV.CORE TO ROLE NN_EU_AR_RO_IO_FIT_DEV;
+GRANT SELECT                      ON FUTURE TABLES IN SCHEMA IO_FIT_DEV.RPT TO ROLE NN_EU_AR_RO_IO_FIT_DEV;
+GRANT SELECT                      ON FUTURE VIEWS  IN SCHEMA IO_FIT_DEV.RPT TO ROLE NN_EU_AR_RO_IO_FIT_DEV;
+GRANT SELECT                      ON FUTURE TABLES IN SCHEMA IO_FIT_DEV.STAGE TO ROLE NN_EU_AR_RO_IO_FIT_DEV;
+GRANT SELECT                      ON FUTURE VIEWS  IN SCHEMA IO_FIT_DEV.STAGE TO ROLE NN_EU_AR_RO_IO_FIT_DEV;
+
+
+
+------ PROD
+-------- IO_FIT_PROD
+GRANT USAGE ON DATABASE IO_FIT_PROD TO ROLE NN_EU_AR_RO_IO_FIT_PROD;
+GRANT USAGE                       ON SCHEMA IO_FIT_PROD.CORE TO ROLE NN_EU_AR_RO_IO_FIT_PROD;
+GRANT USAGE                       ON SCHEMA IO_FIT_PROD.RPT TO ROLE NN_EU_AR_RO_IO_FIT_PROD;
+GRANT USAGE                       ON SCHEMA IO_FIT_PROD.STAGE TO ROLE NN_EU_AR_RO_IO_FIT_PROD;
+
+GRANT SELECT                      ON FUTURE TABLES IN SCHEMA IO_FIT_PROD.CORE TO ROLE NN_EU_AR_RO_IO_FIT_PROD;
+GRANT SELECT                      ON FUTURE VIEWS  IN SCHEMA IO_FIT_PROD.CORE TO ROLE NN_EU_AR_RO_IO_FIT_PROD;
+GRANT SELECT                      ON FUTURE TABLES IN SCHEMA IO_FIT_PROD.RPT TO ROLE NN_EU_AR_RO_IO_FIT_PROD;
+GRANT SELECT                      ON FUTURE VIEWS  IN SCHEMA IO_FIT_PROD.RPT TO ROLE NN_EU_AR_RO_IO_FIT_PROD;
+GRANT SELECT                      ON FUTURE TABLES IN SCHEMA IO_FIT_PROD.STAGE TO ROLE NN_EU_AR_RO_IO_FIT_PROD;
+GRANT SELECT                      ON FUTURE VIEWS  IN SCHEMA IO_FIT_PROD.STAGE TO ROLE NN_EU_AR_RO_IO_FIT_PROD;
+
+
+
+------ TEST
+-------- IO_FIT_TEST
+GRANT USAGE ON DATABASE IO_FIT_TEST TO ROLE NN_EU_AR_RO_IO_FIT_TEST;
+GRANT USAGE                       ON SCHEMA IO_FIT_TEST.CORE TO ROLE NN_EU_AR_RO_IO_FIT_TEST;
+GRANT USAGE                       ON SCHEMA IO_FIT_TEST.RPT TO ROLE NN_EU_AR_RO_IO_FIT_TEST;
+GRANT USAGE                       ON SCHEMA IO_FIT_TEST.STAGE TO ROLE NN_EU_AR_RO_IO_FIT_TEST;
+
+GRANT SELECT                      ON FUTURE TABLES IN SCHEMA IO_FIT_TEST.CORE TO ROLE NN_EU_AR_RO_IO_FIT_TEST;
+GRANT SELECT                      ON FUTURE VIEWS  IN SCHEMA IO_FIT_TEST.CORE TO ROLE NN_EU_AR_RO_IO_FIT_TEST;
+GRANT SELECT                      ON FUTURE TABLES IN SCHEMA IO_FIT_TEST.RPT TO ROLE NN_EU_AR_RO_IO_FIT_TEST;
+GRANT SELECT                      ON FUTURE VIEWS  IN SCHEMA IO_FIT_TEST.RPT TO ROLE NN_EU_AR_RO_IO_FIT_TEST;
+GRANT SELECT                      ON FUTURE TABLES IN SCHEMA IO_FIT_TEST.STAGE TO ROLE NN_EU_AR_RO_IO_FIT_TEST;
+GRANT SELECT                      ON FUTURE VIEWS  IN SCHEMA IO_FIT_TEST.STAGE TO ROLE NN_EU_AR_RO_IO_FIT_TEST;
+
+
+
+----------------------------------------------------------------------------------------------------------------
+---- Grant for RW Access roles
+----------------------------------------------------------------------------------------------------------------
+------ DEV
+-------- IO_FIT_DEV
+GRANT USAGE ON DATABASE IO_FIT_DEV TO ROLE NN_EU_AR_RW_IO_FIT_DEV;
+GRANT USAGE                       ON SCHEMA IO_FIT_DEV.CORE TO ROLE NN_EU_AR_RW_IO_FIT_DEV;
+GRANT USAGE                       ON SCHEMA IO_FIT_DEV.RPT TO ROLE NN_EU_AR_RW_IO_FIT_DEV;
+GRANT USAGE                       ON SCHEMA IO_FIT_DEV.STAGE TO ROLE NN_EU_AR_RW_IO_FIT_DEV;
+
+GRANT SELECT,INSERT,UPDATE,DELETE ON FUTURE TABLES IN SCHEMA IO_FIT_DEV.CORE TO ROLE NN_EU_AR_RW_IO_FIT_DEV;
+GRANT SELECT                      ON FUTURE VIEWS  IN SCHEMA IO_FIT_DEV.CORE TO ROLE NN_EU_AR_RW_IO_FIT_DEV;
+GRANT SELECT,INSERT,UPDATE,DELETE ON FUTURE TABLES IN SCHEMA IO_FIT_DEV.RPT TO ROLE NN_EU_AR_RW_IO_FIT_DEV;
+GRANT SELECT                      ON FUTURE VIEWS  IN SCHEMA IO_FIT_DEV.RPT TO ROLE NN_EU_AR_RW_IO_FIT_DEV;
+GRANT SELECT,INSERT,UPDATE,DELETE ON FUTURE TABLES IN SCHEMA IO_FIT_DEV.STAGE TO ROLE NN_EU_AR_RW_IO_FIT_DEV;
+GRANT SELECT                      ON FUTURE VIEWS  IN SCHEMA IO_FIT_DEV.STAGE TO ROLE NN_EU_AR_RW_IO_FIT_DEV;
+
+
+
+------ PROD
+-------- IO_FIT_PROD
+GRANT USAGE ON DATABASE IO_FIT_PROD TO ROLE NN_EU_AR_RW_IO_FIT_PROD;
+GRANT USAGE                       ON SCHEMA IO_FIT_PROD.CORE TO ROLE NN_EU_AR_RW_IO_FIT_PROD;
+GRANT USAGE                       ON SCHEMA IO_FIT_PROD.RPT TO ROLE NN_EU_AR_RW_IO_FIT_PROD;
+GRANT USAGE                       ON SCHEMA IO_FIT_PROD.STAGE TO ROLE NN_EU_AR_RW_IO_FIT_PROD;
+
+GRANT SELECT,INSERT,UPDATE,DELETE ON FUTURE TABLES IN SCHEMA IO_FIT_PROD.CORE TO ROLE NN_EU_AR_RW_IO_FIT_PROD;
+GRANT SELECT                      ON FUTURE VIEWS  IN SCHEMA IO_FIT_PROD.CORE TO ROLE NN_EU_AR_RW_IO_FIT_PROD;
+GRANT SELECT,INSERT,UPDATE,DELETE ON FUTURE TABLES IN SCHEMA IO_FIT_PROD.RPT TO ROLE NN_EU_AR_RW_IO_FIT_PROD;
+GRANT SELECT                      ON FUTURE VIEWS  IN SCHEMA IO_FIT_PROD.RPT TO ROLE NN_EU_AR_RW_IO_FIT_PROD;
+GRANT SELECT,INSERT,UPDATE,DELETE ON FUTURE TABLES IN SCHEMA IO_FIT_PROD.STAGE TO ROLE NN_EU_AR_RW_IO_FIT_PROD;
+GRANT SELECT                      ON FUTURE VIEWS  IN SCHEMA IO_FIT_PROD.STAGE TO ROLE NN_EU_AR_RW_IO_FIT_PROD;
+
+
+
+------ TEST
+-------- IO_FIT_TEST
+GRANT USAGE ON DATABASE IO_FIT_TEST TO ROLE NN_EU_AR_RW_IO_FIT_TEST;
+GRANT USAGE                       ON SCHEMA IO_FIT_TEST.CORE TO ROLE NN_EU_AR_RW_IO_FIT_TEST;
+GRANT USAGE                       ON SCHEMA IO_FIT_TEST.RPT TO ROLE NN_EU_AR_RW_IO_FIT_TEST;
+GRANT USAGE                       ON SCHEMA IO_FIT_TEST.STAGE TO ROLE NN_EU_AR_RW_IO_FIT_TEST;
+
+GRANT SELECT,INSERT,UPDATE,DELETE ON FUTURE TABLES IN SCHEMA IO_FIT_TEST.CORE TO ROLE NN_EU_AR_RW_IO_FIT_TEST;
+GRANT SELECT                      ON FUTURE VIEWS  IN SCHEMA IO_FIT_TEST.CORE TO ROLE NN_EU_AR_RW_IO_FIT_TEST;
+GRANT SELECT,INSERT,UPDATE,DELETE ON FUTURE TABLES IN SCHEMA IO_FIT_TEST.RPT TO ROLE NN_EU_AR_RW_IO_FIT_TEST;
+GRANT SELECT                      ON FUTURE VIEWS  IN SCHEMA IO_FIT_TEST.RPT TO ROLE NN_EU_AR_RW_IO_FIT_TEST;
+GRANT SELECT,INSERT,UPDATE,DELETE ON FUTURE TABLES IN SCHEMA IO_FIT_TEST.STAGE TO ROLE NN_EU_AR_RW_IO_FIT_TEST;
+GRANT SELECT                      ON FUTURE VIEWS  IN SCHEMA IO_FIT_TEST.STAGE TO ROLE NN_EU_AR_RW_IO_FIT_TEST;
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------
+-- CREATE SERVICE USERS ASD SET ROLES
+----------------------------------------------------------------------------------------------------------------
+USE ROLE SECURITYADMIN;
+
+----------------------------------------------------------------------------------------------------------------
+---- Create service account users
+----------------------------------------------------------------------------------------------------------------
+------ Create BI service account user
+------ DEV
+CREATE USER SVC_EU_BI_IO_FIT_DEV   
+	LOGIN_NAME = SVC_EU_BI_IO_FIT_DEV   
+	DISPLAY_NAME = SVC_EU_BI_IO_FIT_DEV  ;
+------ PROD
+CREATE USER SVC_EU_BI_IO_FIT_PROD  
+	LOGIN_NAME = SVC_EU_BI_IO_FIT_PROD  
+	DISPLAY_NAME = SVC_EU_BI_IO_FIT_PROD ;
+------ TEST
+CREATE USER SVC_EU_BI_IO_FIT_TEST  
+	LOGIN_NAME = SVC_EU_BI_IO_FIT_TEST  
+	DISPLAY_NAME = SVC_EU_BI_IO_FIT_TEST ;
+	
+------ Create ETL service account user
+------ DEV
+CREATE USER SVC_EU_DBT_IO_FIT_DEV  
+	LOGIN_NAME = SVC_EU_DBT_IO_FIT_DEV  
+	DISPLAY_NAME = SVC_EU_DBT_IO_FIT_DEV ;
+------ PROD
+CREATE USER SVC_EU_DBT_IO_FIT_PROD 
+	LOGIN_NAME = SVC_EU_DBT_IO_FIT_PROD 
+	DISPLAY_NAME = SVC_EU_DBT_IO_FIT_PROD;
+------ TEST
+CREATE USER SVC_EU_DBT_IO_FIT_TEST 
+	LOGIN_NAME = SVC_EU_DBT_IO_FIT_TEST 
+	DISPLAY_NAME = SVC_EU_DBT_IO_FIT_TEST;
+
+
+------ DEV
+ALTER  USER SVC_EU_BI_IO_FIT_DEV   
+	    SET DEFAULT_ROLE = 'NN_EU_SNFK_BI_IO_FIT_DEV', 
+	        DEFAULT_NAMESPACE = 'IO_FIT_DEV', 
+		    DEFAULT_WAREHOUSE = 'WH_EU_XS_BI_IO_FIT_NPROD';
+------ PROD
+ALTER  USER SVC_EU_BI_IO_FIT_PROD  
+		SET DEFAULT_ROLE = 'NN_EU_SNFK_BI_IO_FIT_PROD', 
+			DEFAULT_NAMESPACE = 'IO_FIT_PROD', 
+			DEFAULT_WAREHOUSE = 'WH_EU_XS_BI_IO_FIT_PROD';
+------ TEST
+ALTER  USER SVC_EU_BI_IO_FIT_TEST  
+		SET DEFAULT_ROLE = 'NN_EU_SNFK_BI_IO_FIT_TEST', 
+			DEFAULT_NAMESPACE = 'IO_FIT_TEST', 
+			DEFAULT_WAREHOUSE = 'WH_EU_XS_BI_IO_FIT_NPROD';
+
+------ DEV
+ALTER  USER SVC_EU_DBT_IO_FIT_DEV  
+		SET DEFAULT_ROLE = 'NN_EU_SNFK_ETL_IO_FIT_DEV', 
+			DEFAULT_NAMESPACE = 'IO_FIT_DEV', 
+			DEFAULT_WAREHOUSE = 'WH_EU_XS_ETL_IO_FIT_NPROD';
+------ PROD
+ALTER  USER SVC_EU_DBT_IO_FIT_PROD 
+		SET DEFAULT_ROLE = 'NN_EU_SNFK_ETL_IO_FIT_PROD', 
+			DEFAULT_NAMESPACE = 'IO_FIT_PROD', 
+			DEFAULT_WAREHOUSE = 'WH_EU_XS_ETL_IO_FIT_PROD';
+------ TEST
+ALTER  USER SVC_EU_DBT_IO_FIT_TEST 
+		SET DEFAULT_ROLE = 'NN_EU_SNFK_ETL_IO_FIT_TEST', 
+			DEFAULT_NAMESPACE = 'IO_FIT_TEST', 
+			DEFAULT_WAREHOUSE = 'WH_EU_XS_ETL_IO_FIT_NPROD';
+
+----------------------------------------------------------------------------------------------------------------
+---- Grant roles service account users
+----------------------------------------------------------------------------------------------------------------
+------ Grant roles to BI service account user
+------ DEV
+GRANT ROLE NN_EU_SNFK_BI_IO_FIT_DEV   TO USER SVC_EU_BI_IO_FIT_DEV;
+------ PROD
+GRANT ROLE NN_EU_SNFK_BI_IO_FIT_PROD  TO USER SVC_EU_BI_IO_FIT_PROD;
+------ TEST
+GRANT ROLE NN_EU_SNFK_BI_IO_FIT_TEST  TO USER SVC_EU_BI_IO_FIT_TEST;
+
+------ Grant roles to ETL service account user
+------ DEV
+GRANT ROLE NN_EU_SNFK_ETL_IO_FIT_DEV  TO USER SVC_EU_DBT_IO_FIT_DEV;
+------ PROD
+GRANT ROLE NN_EU_SNFK_ETL_IO_FIT_PROD TO USER SVC_EU_DBT_IO_FIT_PROD;
+------ TEST
+GRANT ROLE NN_EU_SNFK_ETL_IO_FIT_TEST TO USER SVC_EU_DBT_IO_FIT_TEST;
+
+ALTER USER "SVC_EU_DBT_IO_FIT_DEV" SET RSA_PUBLIC_KEY='MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAptoC1jaKFaKgjiRbCaIi
+ZbJj6hzBl9HvNGZcQF5ekB/yh8FrtrWrt+z/D5CcJG+QlZuhkvrG8/bXoKA3ZHkZ
+OKnD/hklzKvR0Kwkti/3QXae2hvKjKygY+EGi8W9w0nsesCjGvRt6ErmB/6lHtzc
+MBTT05N4MHWGLcuSbns8zr/1bYK38kujyB9QF50qpKre1Esh5Y4WHblVP8Rc57NC
+3GQkbzDsi9nnbm6AJEJxsnkmILnrGS9DZdly0HPmsDFjAYg+Q8+Z9w10bpzqpyQ3
+viFWXJQeLTSxLEBDyer/JYy+8xbBMDLM6gYCC4wJYdRWyicsRVkNbC5AeihskaOR
+bQIDAQAB';
+
+ALTER USER "SVC_EU_DBT_IO_FIT_PROD" SET RSA_PUBLIC_KEY='MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmN+s9DZgVrcz258gqSY5
+CJoYs76CVvdl6NTpvHRISn207dYfVk7o8UT0ihdpp9VMnc7E/c1KgoHsxa51kJQP
+hoI5e2Ced8Wd8oHK5GQyf/5Qai67iweHpS8exLiWP6BoxZJFEiq1EHqH91T7rVYQ
+/93aqLPvVTnNJ0yBD+BOFK9ZsBQA3HYIx7ec5uOf/ERj1vtCA89a42psJIK2ukEH
+8l+43mLd7byQnOfxdG7OEwyfGfkOrHuRT87Zah94OjLbbhB0NKCE+MR+U/iTWaDT
+s0fltLfdtWACJm22CnjBOjo1D54rSxjl/VqmjS5ztdVrcvRDCaUaqPblL29ZBI4k
+AQIDAQAB';
+
+ALTER USER "SVC_EU_DBT_IO_FIT_TEST" SET RSA_PUBLIC_KEY='MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4GaWfKux5uD/HMihOJOA
+KgYpz40o5Wv4FDoRpnJ5oYBEBda3/eGxHsJEBVXcB2NrkLzDvPf4iwGhCabm2CJC
+7bcsAsmKREkO+w+CXJNUjHfxshMOV7raX7+e8TaqqfYh8lcx211UObCNx0FnKzBE
+9G1iZPse0lpNawiR7GtHdxMX/oub3Jne68H9NSSQAQLslNImo5LKRJGos744Jwga
+bvuJn/tFGkn9V3gGzeir5cQLwXMMeNzLqEhyLmMNmwL6dOLi/2z81q1yzuxnbqK6
+BTzRNOEjWofpkudT2tbj5TqKWL7Z96jengDqbqp15eIOLBGEkTYpHShH5IIzbQoY
+BQIDAQAB';
+
+
+
+
+
+
