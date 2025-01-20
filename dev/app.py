@@ -841,12 +841,31 @@ USE ROLE SECURITYADMIN;
 def main(session: snowpark.Session): 
     global global_session
     global_session = session
+    import snowflake.connector
     
+     result = createRoles() + '\n' + createDatabases() + '\n' + createWH() + '\n' + createGrantsAR2Objects() + '\n' + createServiceUsers()
+    def create_snowflake_worksheet(result):
+    # Snowflake connection details
+        conn = snowflake.connector.connect(
+            user="sftraining",
+            password="Snowflake24!",
+            account="axivxno-bwb79529",
+            warehouse="COMPUTE_WH",
+            database="GIT_INT",
+            schema="DEMO"
+        )
+        
+        sql_script = result
+        create_worksheet_sql = f"""
+    INSERT INTO GIT_INT.DEMO.SCRIPT_STORE (script)
+    VALUES ('Generated Worksheet', $$ {sql_script} $$);
+    """
+        with conn.cursor() as cur:
+            cur.execute(create_worksheet_sql)
+            print("Worksheet created successfully.")
+            conn.close()
+            
+    create_snowflake_worksheet(result)
     
-    result = createRoles() + '\n' + createDatabases() + '\n' + createWH() + '\n' + createGrantsAR2Objects() + '\n' + createServiceUsers()
-    insert_statement= '''
-    INSERT INTO GIT_INT.DEMO.SCRIPT_STORE  VALUES 
-    ({result});'''
-    data=session.sql(insert_statement).collect()
 
     #return result
