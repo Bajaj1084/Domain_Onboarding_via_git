@@ -9,6 +9,7 @@
 import snowflake.snowpark as snowpark
 from snowflake.snowpark.functions import col
 import random
+import os
 
 global_session = ''
 
@@ -847,13 +848,12 @@ def main(session: snowpark.Session):
     def create_snowflake_worksheet(result):
     # Snowflake connection details
         conn = snowflake.connector.connect(
-            user="SFTRAINING",
-            password="Snowflake24!",
-            account="axivxno-bwb79529",
-            warehouse="COMPUTE_WH",
-            database="GIT_INT",
-            schema="DEMO"
-        )
+        user=os.getenv('SF_USER'),
+        password=os.getenv('SF_PASSWORD'),
+        account=os.getenv('SF_ACCOUNT'),
+        warehouse=os.getenv('SF_WAREHOUSE'),
+        database=os.getenv('SF_DATABASE')
+    )
         
         sql_script = result
         create_worksheet_sql = f"""
