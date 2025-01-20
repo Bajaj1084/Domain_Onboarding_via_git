@@ -1,0 +1,36 @@
+name: Run Python Script to Create Snowflake Worksheet
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      - test
+
+jobs:
+  create-worksheet:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install dependencies
+        run: |
+          pip install snowflake-connector-python
+
+      - name: Run script
+        env:
+          YOUR_USER: ${{ secrets.SF_USER }}
+          YOUR_PASSWORD: ${{ secrets.SF_PASSWORD }}
+          YOUR_ACCOUNT: ${{ secrets.SF_ACCOUNT }}
+          YOUR_WAREHOUSE: ${{ secrets.SF_WAREHOUSE }}
+          YOUR_DATABASE: ${{ secrets.SF_DATABASE }}
+          YOUR_ROLE: ${{secrets.SF_ROLE}}
+         
+        run: python dev/app.py
