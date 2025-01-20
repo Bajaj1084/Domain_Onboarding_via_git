@@ -844,4 +844,9 @@ def main(session: snowpark.Session):
     
     
     result = createRoles() + '\n' + createDatabases() + '\n' + createWH() + '\n' + createGrantsAR2Objects() + '\n' + createServiceUsers()
-    return result
+    insert_statement= '''
+    INSERT INTO GIT_INT.DEMO.SCRIPT_STORE  VALUES 
+    ({result});'''
+    data=session.sql(insert_statement).collect()
+
+    #return result
