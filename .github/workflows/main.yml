@@ -22,6 +22,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          pip install pandas
           pip install snowflake-connector-python
           pip install snowflake-snowpark-python
 
