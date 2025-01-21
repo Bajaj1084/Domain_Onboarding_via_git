@@ -462,7 +462,7 @@ def createRoles():
         print("Executing SQL script...")
         cur.execute(sqlText)
         rows = cur.fetchall()
-        print(rows)
+        # print(rows)
         conn.close()
             
     # rows = global_session.sql("""select * from GIT_INT.DEMO.TEST_TABLE""").collect() if global_session else []
