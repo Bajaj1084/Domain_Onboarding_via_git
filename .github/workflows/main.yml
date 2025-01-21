@@ -36,5 +36,5 @@ jobs:
           SNOWFLAKE_PASSWORD: ${{ secrets.SF_PASSWORD }}
         run: python dev/app.py
 
-      # - name: Run script
-      #   run: python dev/app.py
+      - name: Hello World
+        run: python dev/helloworld.py
