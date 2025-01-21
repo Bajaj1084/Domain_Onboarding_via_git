@@ -69,6 +69,7 @@ def generatePassword(maxLen = 15):
     return(password)
 
 x=",\n".join(l)
+print(x)
 
 SRC_CTE = f"""
 WITH 
@@ -84,7 +85,7 @@ SRC AS (
         ,TRIM(parameter5) parameter5
         ,TRIM(parameter6) parameter6
     FROM VALUES 
-               {x}
+               {l}
 
               AS SRC(category, key, value, parameter1, parameter2, parameter3, parameter4, parameter5, parameter6)
     WHERE SRC.key <> ''
