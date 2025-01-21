@@ -873,3 +873,5 @@ def main(session: snowpark.Session):
     
 
     #return result
+
+main()
