@@ -23,6 +23,13 @@ conn = snowflake.connector.connect(
             database=os.getenv("SF_DATABASE"),
             role=os.getenv("SF_ROLE")
         )
+sqlText="select * from GIT_INT.DEMO.STORE_INFO"
+ with conn.cursor() as cur:
+        cur.execute(sqlText)
+        rows = cur.fetchall()
+        print(rows)
+             
+        #conn.close()
 
 def generatePassword(maxLen = 15):
     DIGITS            = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'] 
