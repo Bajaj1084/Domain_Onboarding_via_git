@@ -978,16 +978,28 @@ def main(session: snowpark.Session):
         raise Exception("Snowpark session not initialized.")
     result = createRoles() + '\n' + createDatabases() + '\n' + createWH() + '\n' + createGrantsAR2Objects() + '\n' + createServiceUsers()
     print(result)
+            
     sqlText = f"""
     INSERT INTO GIT_INT.DEMO.SCRIPT_STORE (script)
     VALUES ({result});
-    
+    print("Connecting to Snowflake...")
+    conn = snowflake.connector.connect(
+            user=os.getenv("SF_USERNAME"),
+            password=os.getenv("SNOWFLAKE_PASSWORD"),
+            account=os.getenv("SF_ACCOUNT"),
+            warehouse=os.getenv("SF_WAREHOUSE"),
+            database=os.getenv("SF_DATABASE"),
+            schema=os.getenv("SF_SCHEMA"),
+            role=os.getenv("SF_ROLE")
+        )
+
      with conn.cursor() as cur:
         print("Executing SQL script...")
         cur.execute(sqlText)
         rows = cur.fetchall()
-        # print(rows)
-        #conn.close()
+        
+        print(rows)
+        conn.close()
         
     # create_worksheet_sql = f"""
     # INSERT INTO GIT_INT.DEMO.SCRIPT_STORE (script)
