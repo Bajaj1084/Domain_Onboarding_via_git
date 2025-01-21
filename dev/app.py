@@ -464,9 +464,6 @@ def createRoles():
         rows = cur.fetchall()
         print(rows)
         conn.close()
-    for row in rows:
-            print(row)
-            print(row[0],row[1])
             
     # rows = global_session.sql("""select * from GIT_INT.DEMO.TEST_TABLE""").collect() if global_session else []
     # rows = global_session.sql(sqlText).collect()
@@ -479,17 +476,27 @@ def createRoles():
 
     #Generate scripts with some logics related to Role creation
     for row in rows:
-            
-        roleType        = row["ROLE_TYPE"]
-        roleName        = row["ROLE_NAME"]
-        roleCode        = row["ROLE_CODE"]
-        envCode         = row["ENV_CODE"]
-        roleOwner       = row["ROLE_OWNER"]
-        roleGrant       = row["ROLE_GRANT"]
-        seq             = row["SEQ"]
-        roleTypeSeq     = row["ROLE_TYPE_SEQ"]
-        roleNameIsFirst = row["ROLE_NAME_IS_FIRST"]
-        createSql       = row["CREATE_SQL"]
+        roleType        = row[1]
+        roleName        = row[2]
+        roleCode        = row[6]
+        envCode         = row[7]
+        roleOwner       = row[12]
+        roleGrant       = row[13]
+        seq             = row[15]
+        roleTypeSeq     = row[16]
+        roleNameIsFirst = row[17]
+        createSql       = row[0]
+                
+        # roleType        = row["ROLE_TYPE"]
+        # roleName        = row["ROLE_NAME"]
+        # roleCode        = row["ROLE_CODE"]
+        # envCode         = row["ENV_CODE"]
+        # roleOwner       = row["ROLE_OWNER"]
+        # roleGrant       = row["ROLE_GRANT"]
+        # seq             = row["SEQ"]
+        # roleTypeSeq     = row["ROLE_TYPE_SEQ"]
+        # roleNameIsFirst = row["ROLE_NAME_IS_FIRST"]
+        # createSql       = row["CREATE_SQL"]
 
         if seq == 1:
             #Create role script: Header for the whole script
