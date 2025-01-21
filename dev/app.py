@@ -848,7 +848,7 @@ def main(session: snowpark.Session):
     def create_snowflake_worksheet(result):
     # Snowflake connection details
         conn = snowflake.connector.connect(
-        user=os.getenv('SF_USER'),
+        user=os.getenv('SF_USERNAME'),
         password=os.getenv('SF_PASSWORD'),
         account=os.getenv('SF_ACCOUNT'),
         warehouse=os.getenv('SF_WAREHOUSE'),
