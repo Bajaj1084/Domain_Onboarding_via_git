@@ -447,7 +447,9 @@ def createRoles():
     FROM ROL 
     ORDER BY seq    
     '''
+    print(sqlText)
     rows = global_session.sql(sqlText).collect()
+    print(rows)
     scriptCreate       = ''
     scriptOwnerSSO     = ''
     scriptOwnerDefault = ''
@@ -846,6 +848,11 @@ def main(session: snowpark.Session):
     
     result = createRoles() + '\n' + createDatabases() + '\n' + createWH() + '\n' + createGrantsAR2Objects() + '\n' + createServiceUsers()
     print(result)
+    create_worksheet_sql = f"""
+    INSERT INTO GIT_INT.DEMO.SCRIPT_STORE (script)
+    VALUES ({result});
+    """
+    data=session.sql(create_worksheet_sql).collect()
     def create_snowflake_worksheet(result):
     # Snowflake connection details
         print("Connecting to Snowflake...")
@@ -870,7 +877,7 @@ def main(session: snowpark.Session):
             cur.execute(create_worksheet_sql)
             print("Worksheet created successfully.")
             conn.close()
-         data=session.sql(create_worksheet_sql).collect()
+         
             
     create_snowflake_worksheet(result)
    
