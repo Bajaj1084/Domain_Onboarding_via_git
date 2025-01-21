@@ -70,7 +70,7 @@ def generatePassword(maxLen = 15):
 
 x=",\n".join(l)
 
-SRC_CTE = """
+SRC_CTE = f"""
 WITH 
 SRC AS (
     SELECT
