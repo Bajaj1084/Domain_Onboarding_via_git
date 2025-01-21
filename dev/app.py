@@ -1033,6 +1033,7 @@ def main(session: snowpark.Session):
 result=main(snowpark.Session)
 
 
+
 def chunk_query(query, chunk_size=1000):
     for i in range(0, len(query), chunk_size):
         yield query[i:i+chunk_size]
@@ -1040,17 +1041,66 @@ def chunk_query(query, chunk_size=1000):
 
 query_chunks = list(chunk_query(result, chunk_size=1000))
 
-# Insert each chunk into Snowflake
-for chunk in query_chunks:
-    sqlText = """
-    INSERT INTO GIT_INT.DEMO.SCRIPT_STORAGE (script)
-    VALUES (%s)
-    """
-    with conn.cursor() as cur:
-        cur.execute(sqlText, (chunk,))
-        conn.commit()
-        # conn.close()
-    print("Inserted chunk into table.")
+
+concatenated_query = "".join(query_chunks)
+
+
+sqlText = """
+INSERT INTO GIT_INT.DEMO.SCRIPT_STORAGE (script)
+VALUES (%s)
+"""
+
+with conn.cursor() as cur:
+        cur.execute(sqlText, (concatenated_query,))
+        conn.commit()  # Make sure to commit the transaction
+        print("Inserted concatenated query into table.")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# def chunk_query(query, chunk_size=1000):
+#     for i in range(0, len(query), chunk_size):
+#         yield query[i:i+chunk_size]
+
+
+# query_chunks = list(chunk_query(result, chunk_size=1000))
+
+# # Insert each chunk into Snowflake
+# for chunk in query_chunks:
+#     sqlText = """
+#     INSERT INTO GIT_INT.DEMO.SCRIPT_STORAGE (script)
+#     VALUES (%s)
+#     """
+#     with conn.cursor() as cur:
+#         cur.execute(sqlText, (chunk,))
+#         conn.commit()
+#         # conn.close()
+#     print("Inserted chunk into table.")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # sqlText2=f"""CREATE or REPLACE table GIT_INT.DEMO.SCRIPT_STORAGE  ( 
 #   script varchar(16777216)
