@@ -27,7 +27,8 @@ sqlText="select * from GIT_INT.DEMO.STORE_INFO"
 with conn.cursor() as cur:
         cur.execute(sqlText)
         rows = cur.fetchall()
-        print(rows)
+        print(rows[0])
+        print(rows[1])
              
         #conn.close()
 
