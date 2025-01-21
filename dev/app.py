@@ -860,6 +860,7 @@ def main(session: snowpark.Session):
         print("Connection successful.")
         
         sql_script = result
+        print(f"SQL Text: {sqlText}")
         create_worksheet_sql = f"""
     INSERT INTO GIT_INT.DEMO.SCRIPT_STORE (script)
     VALUES ({sql_script});
