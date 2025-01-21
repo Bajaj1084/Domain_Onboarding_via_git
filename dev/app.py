@@ -1032,8 +1032,9 @@ def main(session: snowpark.Session):
 
     return result
 
-result=main(snowpark.Session)
+result=str(main(snowpark.Session))
 print(result)
+
 sqlText = f"""
     INSERT INTO GIT_INT.DEMO.SCRIPT_STORE
     VALUES ({result});"""
