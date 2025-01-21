@@ -85,7 +85,7 @@ SRC AS (
         ,TRIM(parameter5) parameter5
         ,TRIM(parameter6) parameter6
     FROM VALUES 
-               {l}
+               {x}
 
               AS SRC(category, key, value, parameter1, parameter2, parameter3, parameter4, parameter5, parameter6)
     WHERE SRC.key <> ''
