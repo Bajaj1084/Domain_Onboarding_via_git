@@ -69,7 +69,7 @@ def generatePassword(maxLen = 15):
     return(password)
 
 x=",\n".join(l)
-print(x)
+#print(x)
 
 SRC_CTE = f"""
 WITH 
