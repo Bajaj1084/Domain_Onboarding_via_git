@@ -13,6 +13,17 @@ import os
 
 global_session = ''
 
+import os
+import snowflake.connector
+conn = snowflake.connector.connect(
+            user=os.getenv("SF_USERNAME"),
+            password=os.getenv("SNOWFLAKE_PASSWORD"),
+            account=os.getenv("SF_ACCOUNT"),
+            warehouse=os.getenv("SF_WAREHOUSE"),
+            database=os.getenv("SF_DATABASE"),
+            role=os.getenv("SF_ROLE")
+        )
+
 def generatePassword(maxLen = 15):
     DIGITS            = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'] 
     LOCASE_CHARACTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
