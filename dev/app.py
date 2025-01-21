@@ -450,7 +450,7 @@ def createRoles():
     
     print(f"SQL Text: {sqlText}")
     try:
-        rows = global_session.sql(sqlText).collect()
+        # rows = global_session.sql(sqlText).collect()
         sqlContext = SQLContext(sc)
         rows = sqlContext.sql(sqlText)
         print(f"Rows: {rows}")
