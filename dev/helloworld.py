@@ -28,12 +28,12 @@ def main():
         ]
         
         with conn.cursor() as cur:
-            print("Executing SQL script...")
+            #print("Executing SQL script...")
             for sql in sql_statements:
-                print(f"Executing: {sql.strip()}")
+                #print(f"Executing: {sql.strip()}")
                 rows= cur.execute(sql)
-                print(rows)
-            print("SQL script executed successfully.")
+                print("rows", rows)
+            #print("SQL script executed successfully.")
         
         conn.close()
         print("Connection closed.")
