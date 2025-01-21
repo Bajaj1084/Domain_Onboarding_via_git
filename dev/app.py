@@ -458,8 +458,8 @@ def createRoles():
     FROM ROL 
     ORDER BY seq    
     '''
-     
-    rows = global_session.sql(sqlText).collect()
+    rows = global_session.sql(sqlText).collect() if global_session else []
+    # rows = global_session.sql(sqlText).collect()
 
     scriptCreate       = ''
     scriptOwnerSSO     = ''
@@ -856,7 +856,8 @@ def main(session: snowpark.Session):
     global global_session
     global_session = session
     import snowflake.connector
-    
+    if not global_session:
+        raise Exception("Snowpark session not initialized.")
     result = createRoles() + '\n' + createDatabases() + '\n' + createWH() + '\n' + createGrantsAR2Objects() + '\n' + createServiceUsers()
     print(result)
     create_worksheet_sql = f"""
