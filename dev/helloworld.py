@@ -31,7 +31,8 @@ def main():
             print("Executing SQL script...")
             for sql in sql_statements:
                 print(f"Executing: {sql.strip()}")
-                cur.execute(sql)
+                rows= cur.execute(sql)
+                print(rows)
             print("SQL script executed successfully.")
         
         conn.close()
