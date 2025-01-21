@@ -1032,11 +1032,10 @@ def main(session: snowpark.Session):
 
     return result
 
-result=str(main(snowpark.Session))
-print(result)
-
+result=main(snowpark.Session)
+result='Example'
 sqlText = f"""
-INSERT INTO GIT_INT.DEMO.SCRIPT_STORE VALUES ('Example')"""
+INSERT INTO GIT_INT.DEMO.SCRIPT_STORE VALUES ({result})"""
 with conn.cursor() as cur:
         print("Executing SQL script...")
         cur.execute(sqlText)
