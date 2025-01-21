@@ -106,9 +106,9 @@ ENV AS (
     WHERE SRC.category = 'Environments'
 ),
 ENV_TMP AS (
-    SELECT '{ENV}'     mapping, code   , env_pnp FROM ENV UNION
+    SELECT '{{ENV}}'     mapping, code   , env_pnp FROM ENV UNION
     SELECT code        mapping, code   , env_pnp FROM ENV UNION
-    SELECT '{ENV_PNP}' mapping, env_pnp, env_pnp FROM ENV UNION
+    SELECT '{{ENV_PNP}}' mapping, env_pnp, env_pnp FROM ENV UNION
     SELECT env_pnp     mapping, env_pnp, env_pnp FROM ENV 
 ),
 ROL_SRC AS (
@@ -129,9 +129,9 @@ ROL_SRC AS (
     SELECT SRC.*, '' wh_short_code, PAR.role_owner, PAR.role_grant
     FROM PAR
          CROSS JOIN 
-         VALUES ('Access', 'Read Only'   , 'RO', '{ENV}', '' ,'')
-               ,('Access', 'Read Write'  , 'RW', '{ENV}', '' ,'')
-               ,('Access', 'Object Level', 'OL', '{ENV}', '' ,'')
+         VALUES ('Access', 'Read Only'   , 'RO', '{{ENV}}', '' ,'')
+               ,('Access', 'Read Write'  , 'RW', '{{ENV}}', '' ,'')
+               ,('Access', 'Object Level', 'OL', '{{ENV}}', '' ,'')
                AS SRC(role_type, role_name, role_short_code, role_postfix, map_role_2_ar, wh_bundles)
 ),
 ROL_SEQ AS (
