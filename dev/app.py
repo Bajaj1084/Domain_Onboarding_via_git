@@ -28,7 +28,7 @@ with conn.cursor() as cur:
         cur.execute(sqlText)
         rows = cur.fetchall()
         print(rows[0][0])
-        print(list(rows[1]))
+        print(list(rows[1])[0])
              
         #conn.close()
 
