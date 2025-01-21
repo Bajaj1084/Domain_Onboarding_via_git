@@ -28,10 +28,10 @@ l=[]
 with conn.cursor() as cur:
         cur.execute(sqlText)
         rows = cur.fetchall()
-        print(rows[0][0])
+        #print(rows[0][0])
 for row in rows:
             l.append(row[0])
-print(l)
+#print(l)
              
         #conn.close()
 
@@ -68,6 +68,8 @@ def generatePassword(maxLen = 15):
                 password += random.choice(SYMBOLS)
     return(password)
 
+x=",\n".join(l)
+
 SRC_CTE = """
 WITH 
 SRC AS (
@@ -82,40 +84,7 @@ SRC AS (
         ,TRIM(parameter5) parameter5
         ,TRIM(parameter6) parameter6
     FROM VALUES 
-               ('General', 'Domain Name', 'IO_FIT', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('General', 'Domain Code', 'IO_FIT', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('General', 'Account Region', 'EU', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('General', 'Domain Region', 'EU', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('General', 'Warehouse Prefix', 'WH_EU', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('General', 'Service User Prefix', 'SVC_EU', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('General', 'Role Prefix', 'NN_EU', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('General', 'Role Owner', 'SECURITYADMIN', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('General', 'Role Grant', 'SYSADMIN', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('General', 'DB Owner', 'DOMAIN_ADMIN', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('General', 'Schema Owner', 'DOMAIN_ADMIN', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('General', 'Public Schema Owner', 'ACCOUNTADMIN', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('General', 'WH TYPE', '''STANDARD''', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('General', 'WH AUTO_SUSPEND', '60', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('General', 'WH AUTO_RESUME', 'True', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('General', 'WH MIN_CLUSTER_COUNT', '1', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('General', 'WH MAX_CLUSTER_COUNT', '2', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('General', 'WH SCALING_POLICY', '''STANDARD''', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('Environments', 'Development', 'DEV', 'NPROD', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('Environments', 'Test / UAT', 'TEST', 'NPROD', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('Environments', 'Production', 'PROD', 'PROD', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('Databases', 'IO_FIT', 'IO_FIT', '{ENV}', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('Schemas', 'Staging', 'STAGE', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('Schemas', 'Core', 'CORE', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('Schemas', 'Reporting/Final', 'RPT', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('Roles', 'Domain Admin', 'DOMAIN_ADMIN', 'n.a.', 'n.a.', 'AAD_PROVISIONER', '', 'n.a.', 'n.a.')
-              ,('Roles', 'ETL', 'ETL', '{ENV}', 'RW,OL', '', '', '1', 'ETL')
-              ,('Roles', 'BI', 'BI', '{ENV}', 'RO', '', '', '1', 'BI')
-              ,('Roles', 'Developer', 'DEVELOPER', 'NPROD', 'RW,OL', 'AAD_PROVISIONER', '', '1', 'DEVELOPMENT')
-              ,('Roles', 'Operator', 'OPERATOR', 'PROD', 'RW,OL', 'AAD_PROVISIONER', '', '1', 'OPERATIONS')
-              ,('Roles', 'Reader', 'READER', '{ENV_PNP}', 'RO', 'AAD_PROVISIONER', '', '1', 'READERS')
-              ,('Warehouse Bundles', '1', 'XS', '', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('Service Users', 'ETL Service User', 'ETL', 'ETL', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
-              ,('Service Users', 'BI Service User', 'BI', 'BI', 'n.a.', 'n.a.', 'n.a.', 'n.a.', 'n.a.')
+               {x}
 
               AS SRC(category, key, value, parameter1, parameter2, parameter3, parameter4, parameter5, parameter6)
     WHERE SRC.key <> ''
