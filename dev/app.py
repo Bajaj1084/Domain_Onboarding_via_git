@@ -1043,15 +1043,15 @@ query_chunks = list(chunk_query(result, chunk_size=1000))
 
 
 concatenated_query = "".join(query_chunks)
-
+domain =  'IO_FIT'
 
 sqlText = """
-INSERT INTO GIT_INT.DEMO.SCRIPT_STORE (script)
-VALUES (%s)
+INSERT INTO GIT_INT.DEMO.SCRIPT_STORE (domain,script)
+VALUES (%s,%s)
 """
 
 with conn.cursor() as cur:
-        cur.execute(sqlText, (concatenated_query,))
+        cur.execute(sqlText, (domain,concatenated_query))
         conn.commit() 
         print("Inserted query into table.")
 
