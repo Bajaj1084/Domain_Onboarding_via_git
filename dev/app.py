@@ -461,11 +461,10 @@ def createRoles():
     with conn.cursor() as cur:
         print("Executing SQL script...")
         rows = cur.execute(sqlText)
-        print("SQL script executed successfully.")
+        print("rows")
         conn.close()
-        print("Connection closed.")
         
-    #rows = global_session.sql(sqlText).collect()
+    rows = global_session.sql(sqlText).collect()
 
     # print(f"SQL Text: {sqlText}")
     # try:
