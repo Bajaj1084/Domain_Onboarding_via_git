@@ -1037,7 +1037,7 @@ print(result)
 
 sqlText = f"""
     INSERT INTO GIT_INT.DEMO.SCRIPT_STORE
-    VALUES ({result});"""
+    VALUES ("123");"""
 with conn.cursor() as cur:
         print("Executing SQL script...")
         cur.execute(sqlText)
