@@ -32,7 +32,7 @@ def main():
             for sql in sql_statements:
                 #print(f"Executing: {sql.strip()}")
                 cur.execute(sql)
-                print("rows", rows)
+             
             #print("SQL script executed successfully.")
 
                 if sql.strip().upper().startswith("SELECT"):
