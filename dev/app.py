@@ -24,11 +24,14 @@ conn = snowflake.connector.connect(
             role=os.getenv("SF_ROLE")
         )
 sqlText="select * from GIT_INT.DEMO.STORE_INFO"
+l=[]
 with conn.cursor() as cur:
         cur.execute(sqlText)
         rows = cur.fetchall()
         print(rows[0][0])
-        print(list(rows[1])[0])
+for row in rows:
+            l.append(row[0])
+print(l)
              
         #conn.close()
 
