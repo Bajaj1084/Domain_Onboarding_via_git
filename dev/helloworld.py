@@ -10,17 +10,16 @@ def main():
             account=os.getenv("SF_ACCOUNT"),
             warehouse=os.getenv("SF_WAREHOUSE"),
             database=os.getenv("SF_DATABASE"),
-            schema=os.getenv("SF_SCHEMA"),
             role=os.getenv("SF_ROLE")
         )
         print("Connection successful.")
         
         sql_script = """
-        CREATE TABLE IF NOT EXISTS TEST_TABLE (
+        CREATE TABLE IF NOT EXISTS GIT_INT.DEMO.TEST_TABLE (
             ID INT,
             NAME STRING
         );
-        INSERT INTO TEST_TABLE VALUES (1, 'Example');
+        INSERT INTO GIT_INT.DEMO.TEST_TABLE VALUES (1, 'Example');
         """
         with conn.cursor() as cur:
             print("Executing SQL script...")
