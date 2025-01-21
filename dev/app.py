@@ -453,7 +453,7 @@ def createRoles():
         print(f"Rows: {rows}")
     except Exception as e:
         print(f"Error executing SQL: {e}")
-
+    rows = global_session.sql(sqlText).collect()
     scriptCreate       = ''
     scriptOwnerSSO     = ''
     scriptOwnerDefault = ''
