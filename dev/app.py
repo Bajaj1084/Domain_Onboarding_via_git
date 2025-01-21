@@ -448,6 +448,7 @@ def createRoles():
     ORDER BY seq    
     '''
     print(sqlText)
+    #rows = global_session.sql(sqlText).collect()
     rows = global_session.sql(sqlText).collect()
     print(rows)
     scriptCreate       = ''
