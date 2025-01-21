@@ -463,7 +463,7 @@ def createRoles():
         cur.execute(sqlText)
         rows = cur.fetchall()
         # print(rows)
-        conn.close()
+        #conn.close()
             
     # rows = global_session.sql("""select * from GIT_INT.DEMO.TEST_TABLE""").collect() if global_session else []
     # rows = global_session.sql(sqlText).collect()
@@ -578,7 +578,7 @@ GRANT ROLE {roleCode} TO ROLE {roleGrant} ;'''
         cur.execute(sqlText)
         rows = cur.fetchall()
         # print(rows)
-        conn.close()
+        #conn.close()
                 
     #rows = global_session.sql(sqlText).collect()
     
@@ -634,7 +634,7 @@ def createDatabases():
         cur.execute(sqlText)
         rows = cur.fetchall()
         # print(rows)
-        conn.close()
+        #conn.close()
                 
     scriptCreate    = ''
     scriptGrant     = ''
@@ -727,7 +727,7 @@ def createWH():
         cur.execute(sqlText)
         rows = cur.fetchall()
         # print(rows)
-        conn.close()
+        #conn.close()
                 
     scriptCreate    = ''
     scriptGrant     = ''
@@ -802,7 +802,7 @@ ORDER BY seq'''
         cur.execute(sqlText)
         rows = cur.fetchall()
         # print(rows)
-        conn.close()
+        #conn.close()
                 
     scriptCreate    = ''
     scriptGrant     = ''
@@ -901,7 +901,7 @@ ORDER BY seq'''
         cur.execute(sqlText)
         rows = cur.fetchall()
         # print(rows)
-        conn.close()
+        #conn.close()
                 
     scriptCreate    = ''
     scriptAlter     = ''
@@ -987,7 +987,7 @@ def main(session: snowpark.Session):
         cur.execute(sqlText)
         rows = cur.fetchall()
         # print(rows)
-        conn.close()
+        #conn.close()
         
     # create_worksheet_sql = f"""
     # INSERT INTO GIT_INT.DEMO.SCRIPT_STORE (script)
@@ -1017,7 +1017,7 @@ def main(session: snowpark.Session):
     #     with conn.cursor() as cur:
     #         cur.execute(create_worksheet_sql)
     #         print("Worksheet created successfully.")
-    #         conn.close()
+    #         #conn.close()
          
             
     # create_snowflake_worksheet(result)
@@ -1027,3 +1027,4 @@ def main(session: snowpark.Session):
     #return result
 
 main(snowpark.Session)
+conn.close()
