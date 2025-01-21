@@ -463,8 +463,8 @@ def createRoles():
         rows = cur.execute(sqlText)
         print("rows")
         conn.close()
-        
-    rows = global_session.sql(sqlText).collect()
+    print("rows")  
+    # rows = global_session.sql(sqlText).collect()
 
     # print(f"SQL Text: {sqlText}")
     # try:
