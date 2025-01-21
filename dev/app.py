@@ -573,7 +573,14 @@ GRANT ROLE {roleCode} TO ROLE {roleGrant} ;'''
     SELECT * 
     FROM AR_GRANTS  
     '''
-    rows = global_session.sql(sqlText).collect()
+    with conn.cursor() as cur:
+        print("Executing SQL script...")
+        cur.execute(sqlText)
+        rows = cur.fetchall()
+        # print(rows)
+        conn.close()
+                
+    #rows = global_session.sql(sqlText).collect()
     
     #GRANT ACCESS ROLES TO CREATED ROLES - Header
     scriptGrantAr += f'''
@@ -582,12 +589,19 @@ GRANT ROLE {roleCode} TO ROLE {roleGrant} ;'''
 ----------------------------------------------------------------------------------------------------------------
 USE ROLE SECURITYADMIN;'''
     for row in rows:
-        roleCode        = row["ROLE_CODE"]
-        roleName        = row["ROLE_NAME"]
-        envCode         = row["ENV_CODE"]
-        tgtRole         = row["TGT_ROLE"]
-        roleNameIsFirst = row["ROLE_NAME_IS_FIRST"]
-        envIsFirst      = row["ENV_IS_FIRST"]
+        roleCode        = row[0]
+        roleName        = row[1]
+        envCode         = row[2]
+        tgtRole         = row[3]
+        roleNameIsFirst = row[4]
+        envIsFirst      = row[5]
+                
+        # roleCode        = row["ROLE_CODE"]
+        # roleName        = row["ROLE_NAME"]
+        # envCode         = row["ENV_CODE"]
+        # tgtRole         = row["TGT_ROLE"]
+        # roleNameIsFirst = row["ROLE_NAME_IS_FIRST"]
+        # envIsFirst      = row["ENV_IS_FIRST"]
 
         
         #GRANT ACCESS ROLES TO CREATED ROLES - Header for a given role
@@ -614,7 +628,14 @@ def createDatabases():
     SELECT *
     FROM DB_SCH
     ORDER BY seq'''
-    rows = global_session.sql(sqlText).collect()
+    #rows = global_session.sql(sqlText).collect()
+    with conn.cursor() as cur:
+        print("Executing SQL script...")
+        cur.execute(sqlText)
+        rows = cur.fetchall()
+        # print(rows)
+        conn.close()
+                
     scriptCreate    = ''
     scriptGrant     = ''
    
@@ -627,24 +648,43 @@ def createDatabases():
 ----------------------------------------------------------------------------------------------------------------
 USE ROLE SYSADMIN;'''
     for row in rows:
-        dbName          = row["DB_NAME"]
-        dbShortCode     = row["DB_SHORT_CODE"]
-        dbCode          = row["DB_CODE"]
-        envCode         = row["ENV_CODE"]
-        envName         = row["ENV_NAME"]
-        envPnp          = row["ENV_PNP"]
-        dbOwner         = row["DB_OWNER"]
-        domainName      = row["DOMAIN_NAME"]
-        schemaName      = row["SCHEMA_NAME"]
-        schemaCode      = row["SCHEMA_CODE"]
-        schemaOwner     = row["SCHEMA_OWNER"]
-        isSchemaCreated = row["IS_SCHEMA_CREATED"]
-        seq             = row["SEQ"]
-        envSeq          = row["ENV_SEQ"]
-        envIsFirst      = row["ENV_IS_FIRST"]
-        dbSeq           = row["DB_SEQ"]
-        dbIsFirst       = row["DB_IS_FIRST"]
-        dbIsLast        = row["DB_IS_LAST"]
+        dbName          = row[0]
+        dbShortCode     = row[1]
+        dbCode          = row[2]
+        envCode         = row[3]
+        envName         = row[4]
+        envPnp          = row[5]
+        dbOwner         = row[6]
+        domainName      = row[11]
+        schemaName      = row[7]
+        schemaCode      = row[8]
+        schemaOwner     = row[9]
+        isSchemaCreated = row[10]
+        seq             = row[12]
+        envSeq          = row[13]
+        envIsFirst      = row[14]
+        dbSeq           = row[15]
+        dbIsFirst       = row[16]
+        dbIsLast        = row[18]
+                
+        # dbName          = row["DB_NAME"]
+        # dbShortCode     = row["DB_SHORT_CODE"]
+        # dbCode          = row["DB_CODE"]
+        # envCode         = row["ENV_CODE"]
+        # envName         = row["ENV_NAME"]
+        # envPnp          = row["ENV_PNP"]
+        # dbOwner         = row["DB_OWNER"]
+        # domainName      = row["DOMAIN_NAME"]
+        # schemaName      = row["SCHEMA_NAME"]
+        # schemaCode      = row["SCHEMA_CODE"]
+        # schemaOwner     = row["SCHEMA_OWNER"]
+        # isSchemaCreated = row["IS_SCHEMA_CREATED"]
+        # seq             = row["SEQ"]
+        # envSeq          = row["ENV_SEQ"]
+        # envIsFirst      = row["ENV_IS_FIRST"]
+        # dbSeq           = row["DB_SEQ"]
+        # dbIsFirst       = row["DB_IS_FIRST"]
+        # dbIsLast        = row["DB_IS_LAST"]
         
         if envIsFirst == 1:
             #Create DB script: Header for a given environment
@@ -681,7 +721,14 @@ def createWH():
     SELECT *
     FROM ROL_WH
     ORDER BY seq'''
-    rows = global_session.sql(sqlText).collect()
+    #rows = global_session.sql(sqlText).collect()
+    with conn.cursor() as cur:
+        print("Executing SQL script...")
+        cur.execute(sqlText)
+        rows = cur.fetchall()
+        # print(rows)
+        conn.close()
+                
     scriptCreate    = ''
     scriptGrant     = ''
    
@@ -695,18 +742,31 @@ def createWH():
 USE ROLE SYSADMIN;
 '''
     for row in rows:
-        roleCode      = row["ROLE_CODE"]
-        roleShortCode = row["ROLE_SHORT_CODE"]
-        envPnp        = row["ENV_PNP"]
-        whBundle      = row["WH_BUNDLE"]
-        whCode        = row["WH_CODE"]
-        seq           = row["SEQ"]
-        rolSeq        = row["ROL_SEQ"]
-        envPnpFirst   = row["ENV_PNP_FIRST"]
-        sql           = row["SQL"]
-        envPnpLast    = row["ENV_PNP_LAST"]
-        whCodeSeq     = row["WH_CODE_SEQ"]
-        grantSql      = row["GRANT_SQL"]
+        roleCode      = row[0]
+        roleShortCode = row[3]
+        envPnp        = row[1]
+        whBundle      = row[2]
+        whCode        = row[4]
+        seq           = row[5]
+        rolSeq        = row[6]
+        envPnpFirst   = row[7]
+        sql           = row[11]
+        envPnpLast    = row[8]
+        whCodeSeq     = row[9]
+        grantSql      = row[13]
+                
+        # roleCode      = row["ROLE_CODE"]
+        # roleShortCode = row["ROLE_SHORT_CODE"]
+        # envPnp        = row["ENV_PNP"]
+        # whBundle      = row["WH_BUNDLE"]
+        # whCode        = row["WH_CODE"]
+        # seq           = row["SEQ"]
+        # rolSeq        = row["ROL_SEQ"]
+        # envPnpFirst   = row["ENV_PNP_FIRST"]
+        # sql           = row["SQL"]
+        # envPnpLast    = row["ENV_PNP_LAST"]
+        # whCodeSeq     = row["WH_CODE_SEQ"]
+        # grantSql      = row["GRANT_SQL"]
 
         if rolSeq == 1:
             scriptCreate += f"""
@@ -736,7 +796,14 @@ def createGrantsAR2Objects():
 SELECT *
 FROM AR_GRANTS_OBJ
 ORDER BY seq'''
-    rows = global_session.sql(sqlText).collect()
+    #rows = global_session.sql(sqlText).collect()
+    with conn.cursor() as cur:
+        print("Executing SQL script...")
+        cur.execute(sqlText)
+        rows = cur.fetchall()
+        # print(rows)
+        conn.close()
+                
     scriptCreate    = ''
     scriptGrant     = ''
     scriptGrantPubl = ''
@@ -744,23 +811,41 @@ ORDER BY seq'''
     #Generate scripts to grant access to objects for Access Roles
     #Create DB script: Header for the whole script
     for row in rows:
-        roleShortCode          = row["ROLE_SHORT_CODE"]
-        envCode                = row["ENV_CODE"]
-        roleCode               = row["ROLE_CODE"]
-        dbCode                 = row["DB_CODE"]
-        schemaCode             = row["SCHEMA_CODE"]
-        isPublicSchema         = row["IS_PUBLIC_SCHEMA"]
-        grantDb                = row["GRANT_DB"]
-        grantSchema            = row["GRANT_SCHEMA"]
-        grantSchemaFutureTables= row["GRANT_SCHEMA_FUTURE_TABLES"]
-        grantSchemaFutureViews = row["GRANT_SCHEMA_FUTURE_VIEWS"]
-        grantSchemaPublic      = row["GRANT_SCHEMA_PUBLIC"]
-        seq                    = row["SEQ"]
-        roleFirst              = row["ROLE_FIRST"]
-        roleEnvFirst           = row["ROLE_ENV_FIRST"]
-        roleEnvLast            = row["ROLE_ENV_LAST"]
-        roleEnvDbFirst         = row["ROLE_ENV_DB_FIRST"]
-        roleEnvDbLast          = row["ROLE_ENV_DB_LAST"]
+        roleShortCode          = row[0]
+        envCode                = row[1]
+        roleCode               = row[2]
+        dbCode                 = row[3]
+        schemaCode             = row[4]
+        isPublicSchema         = row[5]
+        grantDb                = row[7]
+        grantSchema            = row[8]
+        grantSchemaFutureTables= row[9]
+        grantSchemaFutureViews = row[10]
+        grantSchemaPublic      = row[11]
+        seq                    = row[6]
+        roleFirst              = row[12]
+        roleEnvFirst           = row[13]
+        roleEnvLast            = row[14]
+        roleEnvDbFirst         = row[15]
+        roleEnvDbLast          = row[16]
+        
+        # roleShortCode          = row["ROLE_SHORT_CODE"]
+        # envCode                = row["ENV_CODE"]
+        # roleCode               = row["ROLE_CODE"]
+        # dbCode                 = row["DB_CODE"]
+        # schemaCode             = row["SCHEMA_CODE"]
+        # isPublicSchema         = row["IS_PUBLIC_SCHEMA"]
+        # grantDb                = row["GRANT_DB"]
+        # grantSchema            = row["GRANT_SCHEMA"]
+        # grantSchemaFutureTables= row["GRANT_SCHEMA_FUTURE_TABLES"]
+        # grantSchemaFutureViews = row["GRANT_SCHEMA_FUTURE_VIEWS"]
+        # grantSchemaPublic      = row["GRANT_SCHEMA_PUBLIC"]
+        # seq                    = row["SEQ"]
+        # roleFirst              = row["ROLE_FIRST"]
+        # roleEnvFirst           = row["ROLE_ENV_FIRST"]
+        # roleEnvLast            = row["ROLE_ENV_LAST"]
+        # roleEnvDbFirst         = row["ROLE_ENV_DB_FIRST"]
+        # roleEnvDbLast          = row["ROLE_ENV_DB_LAST"]
         
         if seq == 1:
             scriptCreate += f'''
@@ -810,7 +895,14 @@ def createServiceUsers():
 SELECT *
 FROM SRV_USERS
 ORDER BY seq'''
-    rows = global_session.sql(sqlText).collect()
+    #rows = global_session.sql(sqlText).collect()
+    with conn.cursor() as cur:
+        print("Executing SQL script...")
+        cur.execute(sqlText)
+        rows = cur.fetchall()
+        # print(rows)
+        conn.close()
+                
     scriptCreate    = ''
     scriptAlter     = ''
     scriptGrant     = ''
@@ -818,13 +910,21 @@ ORDER BY seq'''
     #Generate scripts to grant access to objects for Access Roles
     #Create DB script: Header for the whole script
     for row in rows:
-        createSql         = row["CREATE_SQL"]
-        grantSql          = row["GRANT_SQL"]
-        alterSql          = row["ALTER_SQL"]
-        seq               = row["SEQ"]
-        seqUser           = row["SEQ_USER"]
-        envCode           = row["ENV_CODE"]
-        userRoleShortCode = row["USER_ROLE_SHORT_CODE"]
+        createSql         = row[7]
+        grantSql          = row[9]
+        alterSql          = row[8]
+        seq               = row[10]
+        seqUser           = row[11]
+        envCode           = row[4]
+        userRoleShortCode = row[2]
+                
+        # createSql         = row["CREATE_SQL"]
+        # grantSql          = row["GRANT_SQL"]
+        # alterSql          = row["ALTER_SQL"]
+        # seq               = row["SEQ"]
+        # seqUser           = row["SEQ_USER"]
+        # envCode           = row["ENV_CODE"]
+        # userRoleShortCode = row["USER_ROLE_SHORT_CODE"]
         
         if seq == 1:
             scriptCreate += f'''
@@ -878,38 +978,49 @@ def main(session: snowpark.Session):
         raise Exception("Snowpark session not initialized.")
     result = createRoles() + '\n' + createDatabases() + '\n' + createWH() + '\n' + createGrantsAR2Objects() + '\n' + createServiceUsers()
     print(result)
-    create_worksheet_sql = f"""
+    sqlText = f"""
     INSERT INTO GIT_INT.DEMO.SCRIPT_STORE (script)
     VALUES ({result});
-    """
-    data=session.sql(create_worksheet_sql).collect()
-    def create_snowflake_worksheet(result):
-    # Snowflake connection details
-        print("Connecting to Snowflake...")
-        conn = snowflake.connector.connect(
-            user=os.getenv("SF_USERNAME"),
-            password=os.getenv("SNOWFLAKE_PASSWORD"),
-            account=os.getenv("SF_ACCOUNT"),
-            warehouse=os.getenv("SF_WAREHOUSE"),
-            database=os.getenv("SF_DATABASE"),
-            schema=os.getenv("SF_SCHEMA"),
-            role=os.getenv("SF_ROLE")
-        )
-        print("Connection successful.")
+    
+     with conn.cursor() as cur:
+        print("Executing SQL script...")
+        cur.execute(sqlText)
+        rows = cur.fetchall()
+        # print(rows)
+        conn.close()
         
-        sql_script = result
-        print(f"SQL Text: {sqlText}")
-        create_worksheet_sql = f"""
-    INSERT INTO GIT_INT.DEMO.SCRIPT_STORE (script)
-    VALUES ({sql_script});
-    """
-        with conn.cursor() as cur:
-            cur.execute(create_worksheet_sql)
-            print("Worksheet created successfully.")
-            conn.close()
+    # create_worksheet_sql = f"""
+    # INSERT INTO GIT_INT.DEMO.SCRIPT_STORE (script)
+    # VALUES ({result});
+    # """
+    # data=session.sql(create_worksheet_sql).collect()
+    # def create_snowflake_worksheet(result):
+    # # Snowflake connection details
+    #     print("Connecting to Snowflake...")
+    #     conn = snowflake.connector.connect(
+    #         user=os.getenv("SF_USERNAME"),
+    #         password=os.getenv("SNOWFLAKE_PASSWORD"),
+    #         account=os.getenv("SF_ACCOUNT"),
+    #         warehouse=os.getenv("SF_WAREHOUSE"),
+    #         database=os.getenv("SF_DATABASE"),
+    #         schema=os.getenv("SF_SCHEMA"),
+    #         role=os.getenv("SF_ROLE")
+    #     )
+    #     print("Connection successful.")
+        
+    #     sql_script = result
+    #     print(f"SQL Text: {sqlText}")
+    #     create_worksheet_sql = f"""
+    # INSERT INTO GIT_INT.DEMO.SCRIPT_STORE (script)
+    # VALUES ({sql_script});
+    # """
+    #     with conn.cursor() as cur:
+    #         cur.execute(create_worksheet_sql)
+    #         print("Worksheet created successfully.")
+    #         conn.close()
          
             
-    create_snowflake_worksheet(result)
+    # create_snowflake_worksheet(result)
    
     
 
