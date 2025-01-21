@@ -845,6 +845,7 @@ def main(session: snowpark.Session):
     import snowflake.connector
     
     result = createRoles() + '\n' + createDatabases() + '\n' + createWH() + '\n' + createGrantsAR2Objects() + '\n' + createServiceUsers()
+    print(result)
     def create_snowflake_worksheet(result):
     # Snowflake connection details
         print("Connecting to Snowflake...")
