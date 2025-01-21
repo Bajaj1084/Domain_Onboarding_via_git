@@ -870,8 +870,10 @@ def main(session: snowpark.Session):
             cur.execute(create_worksheet_sql)
             print("Worksheet created successfully.")
             conn.close()
+         data=session.sql(create_worksheet_sql).collect()
             
     create_snowflake_worksheet(result)
+   
     
 
     #return result
