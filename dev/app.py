@@ -24,7 +24,7 @@ conn = snowflake.connector.connect(
             role=os.getenv("SF_ROLE")
         )
 sqlText="select * from GIT_INT.DEMO.STORE_INFO"
- with conn.cursor() as cur:
+with conn.cursor() as cur:
         cur.execute(sqlText)
         rows = cur.fetchall()
         print(rows)
