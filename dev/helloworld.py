@@ -34,6 +34,11 @@ def main():
                 cur.execute(sql)
                 print("rows", rows)
             #print("SQL script executed successfully.")
+
+                if sql.strip().upper().startswith("SELECT"):
+                    rows = cur.fetchall()  # Fetch all rows from the SELECT statement
+                    results.append(rows)
+                    print("Rows fetched:", rows)
         
         conn.close()
         print("Connection closed.")
