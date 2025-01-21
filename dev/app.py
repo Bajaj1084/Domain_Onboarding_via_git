@@ -847,13 +847,17 @@ def main(session: snowpark.Session):
     result = createRoles() + '\n' + createDatabases() + '\n' + createWH() + '\n' + createGrantsAR2Objects() + '\n' + createServiceUsers()
     def create_snowflake_worksheet(result):
     # Snowflake connection details
+        print("Connecting to Snowflake...")
         conn = snowflake.connector.connect(
-        password=os.getenv('SF_PASSWORD'),
-        account=os.getenv('SF_ACCOUNT'),
-        user=os.getenv('SF_USERNAME'),
-        warehouse=os.getenv('SF_WAREHOUSE'),
-        database=os.getenv('SF_DATABASE')
-    )
+            user=os.getenv("SF_USERNAME"),
+            password=os.getenv("SNOWFLAKE_PASSWORD"),
+            account=os.getenv("SF_ACCOUNT"),
+            warehouse=os.getenv("SF_WAREHOUSE"),
+            database=os.getenv("SF_DATABASE"),
+            schema=os.getenv("SF_SCHEMA"),
+            role=os.getenv("SF_ROLE")
+        )
+        print("Connection successful.")
         
         sql_script = result
         create_worksheet_sql = f"""
