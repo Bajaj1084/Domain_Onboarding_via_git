@@ -463,7 +463,11 @@ def createRoles():
         cur.execute(sqlText)
         rows = cur.fetchall()
         print(rows)
-        conn.close()        
+        conn.close()
+    for row in rows:
+            print(row)
+            print(row[0],row[1])
+            
     # rows = global_session.sql("""select * from GIT_INT.DEMO.TEST_TABLE""").collect() if global_session else []
     # rows = global_session.sql(sqlText).collect()
 
@@ -475,6 +479,7 @@ def createRoles():
 
     #Generate scripts with some logics related to Role creation
     for row in rows:
+            
         roleType        = row["ROLE_TYPE"]
         roleName        = row["ROLE_NAME"]
         roleCode        = row["ROLE_CODE"]
