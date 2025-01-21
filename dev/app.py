@@ -283,8 +283,8 @@ AR_GRANTS AS (
                          ,LATERAL SPLIT_TO_TABLE(ROL.map_role_2_ar, ',')VAL
                     ) RF 
            ON RA.role_short_code = RF.value
-          AND CASE WHEN RF.role_postfix = '{ENV}'     AND RA.env_code = RF.env_code THEN 1
-                   WHEN RF.role_postfix = '{ENV_PNP}' AND RA.env_pnp  = RF.env_pnp  THEN 2
+          AND CASE WHEN RF.role_postfix = '{{ENV}}'     AND RA.env_code = RF.env_code THEN 1
+                   WHEN RF.role_postfix = '{{ENV_PNP}}' AND RA.env_pnp  = RF.env_pnp  THEN 2
                    WHEN RF.role_postfix = RA.env_pnp                                THEN 3
               END > 0
     WHERE RA.role_type = 'Access'
@@ -306,7 +306,7 @@ DB AS (
     FROM SRC
          CROSS JOIN PAR
          LEFT  JOIN ROL ON PAR.db_owner = ROL.role_short_code
-         LEFT  JOIN ENV ENV_Split ON CONTAINS(SRC.parameter1, '{ENV}') OR SRC.parameter1 = ENV_Split.code
+         LEFT  JOIN ENV ENV_Split ON CONTAINS(SRC.parameter1, '{{ENV}}') OR SRC.parameter1 = ENV_Split.code
          LEFT  JOIN ENV ENV_Data  ON ENV_Split.code = ENV_Data.code
     WHERE SRC.category = 'Databases'
     ORDER BY db_name
