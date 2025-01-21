@@ -1035,8 +1035,12 @@ result=main(snowpark.Session)
 sqlText = f"""
 INSERT INTO GIT_INT.DEMO.SCRIPT_STORE VALUES ("{result}")
 """
+sqlText2=f"""CREATE or REPLACE table GIT_INT.DEMO.SCRIPT_STORE  ( 
+  script varchar(16777216)
+);"""
+
 with conn.cursor() as cur:
-        
+        cur.execute(sqlText2)
         cur.execute(sqlText)
         rows = cur.fetchall()
         print(rows)
