@@ -32,12 +32,7 @@ def main():
             for sql in sql_statements:
                 #print(f"Executing: {sql.strip()}")
                 cur.execute(sql)
-             
-            #print("SQL script executed successfully.")
-
-             
                 rows = cur.fetchall()  # Fetch all rows from the SELECT statement
-                results.append(rows)
                 print("Rows fetched:", rows)
         
         conn.close()
