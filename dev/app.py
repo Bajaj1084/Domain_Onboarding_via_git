@@ -1035,7 +1035,7 @@ def main(session: snowpark.Session):
 result=main(snowpark.Session)
 print(result)
 sqlText = f"""
-    INSERT INTO GIT_INT.DEMO.SCRIPT_STORE (script)
+    INSERT INTO GIT_INT.DEMO.SCRIPT_STORE
     VALUES ({result});"""
 with conn.cursor() as cur:
         print("Executing SQL script...")
