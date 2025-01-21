@@ -1049,7 +1049,7 @@ for chunk in query_chunks:
     with conn.cursor() as cur:
         cur.execute(sqlText, (chunk,))
         conn.commit()
-        conn.close()
+        # conn.close()
     print("Inserted chunk into table.")
 
 # sqlText2=f"""CREATE or REPLACE table GIT_INT.DEMO.SCRIPT_STORAGE  ( 
@@ -1061,4 +1061,4 @@ for chunk in query_chunks:
 #         cur.execute(sqlText)
 #         rows = cur.fetchall()
 #         print(rows)
-        # conn.close()
+conn.close()
