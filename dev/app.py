@@ -858,7 +858,7 @@ def main(session: snowpark.Session):
         sql_script = result
         create_worksheet_sql = f"""
     INSERT INTO GIT_INT.DEMO.SCRIPT_STORE (script)
-    VALUES ('Generated Worksheet', $$ {sql_script} $$);
+    VALUES ({sql_script});
     """
         with conn.cursor() as cur:
             cur.execute(create_worksheet_sql)
