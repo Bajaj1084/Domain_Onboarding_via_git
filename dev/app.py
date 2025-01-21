@@ -458,23 +458,9 @@ def createRoles():
     FROM ROL 
     ORDER BY seq    
     '''
-    with conn.cursor() as cur:
-        print("Executing SQL script...")
-        rows = cur.execute(sqlText)
-        print(rows)
-        conn.close()
-    print("rows")  
-    # rows = global_session.sql(sqlText).collect()
+     
+    rows = global_session.sql(sqlText).collect()
 
-    # print(f"SQL Text: {sqlText}")
-    # try:
-    #     # rows = global_session.sql(sqlText).collect()
-    #     sqlContext = SQLContext(sc)
-    #     rows = sqlContext.sql(sqlText)
-    #     print(f"Rows: {rows}")
-    # except Exception as e:
-    #     print(f"Error executing SQL: {e}")
-    # #rows = global_session.sql(sqlText).collect()
     scriptCreate       = ''
     scriptOwnerSSO     = ''
     scriptOwnerDefault = ''
