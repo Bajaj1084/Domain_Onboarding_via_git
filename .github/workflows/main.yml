@@ -28,7 +28,7 @@ jobs:
 
       - name: Run script
         env:
-          YOUR_USER: ${{ secrets.SF_USER }}
+          YOUR_USER: ${{ secrets.SF_USERNAME }}
           YOUR_PASSWORD: ${{ secrets.SF_PASSWORD }}
           YOUR_ACCOUNT: ${{ secrets.SF_ACCOUNT }}
           YOUR_WAREHOUSE: ${{ secrets.SF_WAREHOUSE }}
