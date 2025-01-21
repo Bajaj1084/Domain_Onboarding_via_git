@@ -458,7 +458,13 @@ def createRoles():
     FROM ROL 
     ORDER BY seq    
     '''
-    rows = global_session.sql("""select * from GIT_INT.DEMO.TEST_TABLE""").collect() if global_session else []
+    with conn.cursor() as cur:
+        print("Executing SQL script...")
+        cur.execute(sqlText)
+        rows = cur.fetchall()
+        print(rows)
+        conn.close()        
+    # rows = global_session.sql("""select * from GIT_INT.DEMO.TEST_TABLE""").collect() if global_session else []
     # rows = global_session.sql(sqlText).collect()
 
     scriptCreate       = ''
