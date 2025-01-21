@@ -1015,7 +1015,7 @@ def main(session: snowpark.Session):
     #     sql_script = result
     #     print(f"SQL Text: {sqlText}")
     #     create_worksheet_sql = f"""
-    # INSERT INTO GIT_INT.DEMO.SCRIPT_STORE (script)
+    # INSERT INTO GIT_INT.DEMO.SCRIPT_STORAGE (script)
     # VALUES ({sql_script});
     # """
     #     with conn.cursor() as cur:
@@ -1033,9 +1033,9 @@ def main(session: snowpark.Session):
 result=main(snowpark.Session)
 
 sqlText = f"""
-INSERT INTO GIT_INT.DEMO.SCRIPT_STORE VALUES ("{result}")
+INSERT INTO GIT_INT.DEMO.SCRIPT_STORAGE VALUES ("{result}")
 """
-sqlText2=f"""CREATE or REPLACE table GIT_INT.DEMO.SCRIPT_STORE  ( 
+sqlText2=f"""CREATE or REPLACE table GIT_INT.DEMO.SCRIPT_STORAGE  ( 
   script varchar(16777216)
 );"""
 
