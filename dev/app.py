@@ -459,7 +459,6 @@ def createRoles():
     ORDER BY seq    
     '''
     with conn.cursor() as cur:
-        print("Executing SQL script...")
         cur.execute(sqlText)
         rows = cur.fetchall()
         # print(rows)
@@ -574,7 +573,6 @@ GRANT ROLE {roleCode} TO ROLE {roleGrant} ;'''
     FROM AR_GRANTS  
     '''
     with conn.cursor() as cur:
-        print("Executing SQL script...")
         cur.execute(sqlText)
         rows = cur.fetchall()
         # print(rows)
@@ -630,7 +628,7 @@ def createDatabases():
     ORDER BY seq'''
     #rows = global_session.sql(sqlText).collect()
     with conn.cursor() as cur:
-        print("Executing SQL script...")
+        
         cur.execute(sqlText)
         rows = cur.fetchall()
         # print(rows)
@@ -723,7 +721,7 @@ def createWH():
     ORDER BY seq'''
     #rows = global_session.sql(sqlText).collect()
     with conn.cursor() as cur:
-        print("Executing SQL script...")
+        
         cur.execute(sqlText)
         rows = cur.fetchall()
         # print(rows)
@@ -798,7 +796,7 @@ FROM AR_GRANTS_OBJ
 ORDER BY seq'''
     #rows = global_session.sql(sqlText).collect()
     with conn.cursor() as cur:
-        print("Executing SQL script...")
+        
         cur.execute(sqlText)
         rows = cur.fetchall()
         # print(rows)
@@ -897,7 +895,7 @@ FROM SRV_USERS
 ORDER BY seq'''
     #rows = global_session.sql(sqlText).collect()
     with conn.cursor() as cur:
-        print("Executing SQL script...")
+        
         cur.execute(sqlText)
         rows = cur.fetchall()
         # print(rows)
@@ -1033,12 +1031,12 @@ def main(session: snowpark.Session):
     return result
 
 result=main(snowpark.Session)
-result = 'Example'
+
 sqlText = f"""
 INSERT INTO GIT_INT.DEMO.SCRIPT_STORE VALUES ('{result}')
 """
 with conn.cursor() as cur:
-        print("Executing SQL script...")
+        
         cur.execute(sqlText)
         rows = cur.fetchall()
         print(rows)
