@@ -977,29 +977,23 @@ def main(session: snowpark.Session):
     if not global_session:
         raise Exception("Snowpark session not initialized.")
     result = createRoles() + '\n' + createDatabases() + '\n' + createWH() + '\n' + createGrantsAR2Objects() + '\n' + createServiceUsers()
-    print(result)
+    # print(result)
             
-    sqlText = f"""
-    INSERT INTO GIT_INT.DEMO.SCRIPT_STORE (script)
-    VALUES ({result});
-    print("Connecting to Snowflake...")
-    conn = snowflake.connector.connect(
-            user=os.getenv("SF_USERNAME"),
-            password=os.getenv("SNOWFLAKE_PASSWORD"),
-            account=os.getenv("SF_ACCOUNT"),
-            warehouse=os.getenv("SF_WAREHOUSE"),
-            database=os.getenv("SF_DATABASE"),
-            schema=os.getenv("SF_SCHEMA"),
-            role=os.getenv("SF_ROLE")
-        )
+    # sqlText = f"""
+    # INSERT INTO GIT_INT.DEMO.SCRIPT_STORE (script)
+    # VALUES ({result});
+    # print("Connecting to Snowflake...")
+    # conn = snowflake.connector.connect(
+    #         user=os.getenv("SF_USERNAME"),
+    #         password=os.getenv("SNOWFLAKE_PASSWORD"),
+    #         account=os.getenv("SF_ACCOUNT"),
+    #         warehouse=os.getenv("SF_WAREHOUSE"),
+    #         database=os.getenv("SF_DATABASE"),
+    #         schema=os.getenv("SF_SCHEMA"),
+    #         role=os.getenv("SF_ROLE")
+    #     )
 
-     with conn.cursor() as cur:
-        print("Executing SQL script...")
-        cur.execute(sqlText)
-        rows = cur.fetchall()
-        
-        print(rows)
-        conn.close()
+     
         
     # create_worksheet_sql = f"""
     # INSERT INTO GIT_INT.DEMO.SCRIPT_STORE (script)
@@ -1036,7 +1030,16 @@ def main(session: snowpark.Session):
    
     
 
-    #return result
+    return result
 
-main(snowpark.Session)
-conn.close()
+result=main(snowpark.Session)
+print(result)
+sqlText = f"""
+    INSERT INTO GIT_INT.DEMO.SCRIPT_STORE (script)
+    VALUES ({result});
+with conn.cursor() as cur:
+        print("Executing SQL script...")
+        cur.execute(sqlText)
+        rows = cur.fetchall()
+        print(rows)
+        conn.close()
