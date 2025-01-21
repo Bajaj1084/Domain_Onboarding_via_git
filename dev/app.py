@@ -461,7 +461,7 @@ def createRoles():
     with conn.cursor() as cur:
         print("Executing SQL script...")
         rows = cur.execute(sqlText)
-        print("rows")
+        print(rows)
         conn.close()
     print("rows")  
     # rows = global_session.sql(sqlText).collect()
